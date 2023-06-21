@@ -18,5 +18,10 @@ namespace GameStore.Repository
         {
             return (from u in db.Users where u.email == email select u).FirstOrDefault();
         }
+        public static void removeUser(User u)
+        {
+            db.Users.Remove(u);
+            db.SaveChanges();
+        }
     }
 }

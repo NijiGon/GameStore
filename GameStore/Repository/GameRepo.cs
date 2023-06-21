@@ -1,4 +1,5 @@
-﻿using GameStore.Model;
+﻿using GameStore.Factory;
+using GameStore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,13 @@ namespace GameStore.Repository
     public class GameRepo
     {
         static DatabaseEntities db = DatabaseSingleton.GetInstance();
-
+        
+        public static void addGame(int dev_id, string name, string desc, int price, string image)
+        {
+            Game g = GameFactory.createGame(dev_id, name, desc, price, image);
+            db.Games.Add(g);
+            db.SaveChanges();
+        }
         public static List<Game> GetGames()
         {
             return (from g in db.Games select g).ToList();
@@ -29,6 +36,11 @@ namespace GameStore.Repository
         public static List<Game> GetGamesByRating()
         {
             return (from g in db.Games orderby ReviewRepo.GetGameRating(g.Id) descending select g).ToList();
+        }
+        public static void removeGame(Game g)
+        {
+            db.Games.Remove(g);
+            db.SaveChanges();
         }
     }
 }

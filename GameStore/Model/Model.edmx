@@ -32,6 +32,7 @@
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
           <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTORE\APP_DATA\DATABASE.MDF.dbo.Platform' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -285,6 +286,7 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <NavigationProperty Name="Developer" Relationship="Self.FK_Game_ToDeveloper" FromRole="Game" ToRole="Developer" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToGame" FromRole="Game" ToRole="Review" />
           <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetail_ToGame" FromRole="Game" ToRole="TransactionDetail" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -521,6 +523,7 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <EntitySetMapping Name="Games">
             <EntityTypeMapping TypeName="DatabaseModel.Game">
               <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="dev_id" ColumnName="dev_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
