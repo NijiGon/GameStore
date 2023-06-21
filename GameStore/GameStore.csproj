@@ -251,7 +251,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Asset\" />
+    <Folder Include="Asset\developers\" />
+    <Folder Include="Asset\games\" />
+    <Folder Include="Asset\logos\" />
     <Folder Include="Controller\" />
   </ItemGroup>
   <ItemGroup>
