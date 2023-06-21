@@ -35,7 +35,8 @@ namespace GameStore.Repository
         }
         public static List<Game> GetGamesByRating()
         {
-            return (from g in db.Games orderby ReviewRepo.GetGameRating(g.Id) descending select g).ToList();
+            List<Game> games = GetGames();
+            return games.OrderByDescending(d => ReviewRepo.GetGameRating(d.Id)).ToList();
         }
         public static void removeGame(Game g)
         {
