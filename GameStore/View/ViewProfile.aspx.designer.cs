@@ -10,7 +10,7 @@
 
 namespace GameStore.View
 {
-    public partial class ViewReviews
+    public partial class ViewProfile
     {
     }
 }

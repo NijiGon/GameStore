@@ -79,6 +79,7 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="Asset\logos\logo.png" />
     <Content Include="Model\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
@@ -93,14 +94,17 @@
     <Content Include="View\DevDetails.aspx" />
     <Content Include="View\GameDetails.aspx" />
     <Content Include="View\Home.aspx" />
+    <Content Include="View\Login.aspx" />
+    <Content Include="View\Register.aspx" />
     <Content Include="View\ViewCart.aspx" />
     <Content Include="View\ViewCodes.aspx" />
     <Content Include="View\ViewGames.aspx" />
     <Content Include="View\ViewHistory.aspx" />
-    <Content Include="View\ViewReviews.aspx" />
+    <Content Include="View\ViewProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\UserController.cs" />
     <Compile Include="Factory\DetailFactory.cs" />
     <Compile Include="Factory\DevFactory.cs" />
     <Compile Include="Factory\GameFactory.cs" />
@@ -190,6 +194,20 @@
     <Compile Include="View\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -225,12 +243,12 @@
     <Compile Include="View\ViewHistory.aspx.designer.cs">
       <DependentUpon>ViewHistory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewReviews.aspx.cs">
-      <DependentUpon>ViewReviews.aspx</DependentUpon>
+    <Compile Include="View\ViewProfile.aspx.cs">
+      <DependentUpon>ViewProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\ViewReviews.aspx.designer.cs">
-      <DependentUpon>ViewReviews.aspx</DependentUpon>
+    <Compile Include="View\ViewProfile.aspx.designer.cs">
+      <DependentUpon>ViewProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -253,8 +271,6 @@
   <ItemGroup>
     <Folder Include="Asset\developers\" />
     <Folder Include="Asset\games\" />
-    <Folder Include="Asset\logos\" />
-    <Folder Include="Controller\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

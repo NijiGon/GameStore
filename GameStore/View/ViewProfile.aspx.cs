@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace GameStore.View
 {
-    public partial class ViewReviews : System.Web.UI.Page
+    public partial class ViewProfile : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

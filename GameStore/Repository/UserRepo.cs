@@ -1,4 +1,5 @@
-﻿using GameStore.Model;
+﻿using GameStore.Factory;
+using GameStore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,12 @@ namespace GameStore.Repository
     {
         static DatabaseEntities db = DatabaseSingleton.GetInstance();
 
+        public static void addUser(string first, string last, string email, string password, string username, string dob)
+        {
+            User u = UserFactory.createUser(first, last, email, password, username, dob);
+            db.Users.Add(u);
+            db.SaveChanges();
+        }
         public static User FindByUsername(string uname)
         {
             return (from u in db.Users where u.username == uname select u).FirstOrDefault();
@@ -17,6 +24,10 @@ namespace GameStore.Repository
         public static User FindByEmail(string email)
         {
             return (from u in db.Users where u.email == email select u).FirstOrDefault();
+        }
+        public static User FindUser(string email, string pass)
+        {
+            return (from u in db.Users where u.email == email && u.password == pass select u).FirstOrDefault();
         }
         public static void removeUser(User u)
         {
