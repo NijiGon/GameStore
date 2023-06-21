@@ -9,5 +9,10 @@ namespace GameStore.Repository
     public class DevRepo
     {
         static DatabaseEntities db = DatabaseSingleton.GetInstance();
+
+        public static List<Developer> GetDevelopers()
+        {
+            return db.Developers.ToList();
+        }
     }
 }
