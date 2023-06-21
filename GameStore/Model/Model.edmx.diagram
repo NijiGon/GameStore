@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4817163a589b4600ac538ffd11ca219d" Name="Diagram1" ZoomLevel="111">
+        <EntityTypeShape EntityType="DatabaseModel.Cart" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Developer" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Game" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Review" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.TransactionHeader" Width="1.5" PointX="0.875" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.User" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Platform" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.TransactionMethod" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK_Cart_ToGame" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_Cart_ToUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_Game_ToDeveloper" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_Review_ToGame" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_Review_ToUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DatabaseModel.TransactionDetail" Width="1.5" PointX="6.25" PointY="7.75" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionDetail_ToGame" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionDetail_ToHeader" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
