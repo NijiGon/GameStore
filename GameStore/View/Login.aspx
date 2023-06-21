@@ -19,6 +19,9 @@
             <div class="py-1">
                 <asp:Label ID="lbError" runat="server" Text=""></asp:Label>
             </div>
+            <div class="text-center fs-6">
+                <p>Dont have an account? <b><a href="Register.aspx">Register Here</a></b></p>
+            </div>
             <div class="d-flex flex-column py-1">
                 <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="rounded-3 border-0 w-25 m-auto py-2 bg-body-tertiary" OnClick="btnLogin_Click" />
             </div>
