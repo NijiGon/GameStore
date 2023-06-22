@@ -34,12 +34,9 @@
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="image" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTORE\APP_DATA\DATABASE.MDF.dbo.Platform' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Platform">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="name" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
@@ -57,7 +54,7 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <Property Name="like" Type="int" />
           <Property Name="dislike" Type="int" />
         </EntityType>
-        <EntityType Name="TransactionDetail">
+        <EntityType Name="TransactionDetails">
           <Key>
             <PropertyRef Name="transaction_id" />
             <PropertyRef Name="game_id" />
@@ -73,13 +70,12 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="transaction_date" Type="datetime" Nullable="false" />
+          <Property Name="platform_id" Type="int" Nullable="false" />
+          <Property Name="method_id" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTORE\APP_DATA\DATABASE.MDF.dbo.TransactionMethod' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TransactionMethod">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="name" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
@@ -158,27 +154,51 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransactionDetail_ToGame">
+        <Association Name="FK_TransactionDetails_ToGame">
           <End Role="Game" Type="Self.Game" Multiplicity="1" />
-          <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Game">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="TransactionDetail">
+            <Dependent Role="TransactionDetails">
               <PropertyRef Name="game_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransactionDetail_ToHeader">
+        <Association Name="FK_TransactionDetails_ToHeader">
           <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="1" />
-          <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+          <End Role="TransactionDetails" Type="Self.TransactionDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TransactionHeader">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="TransactionDetail">
+            <Dependent Role="TransactionDetails">
               <PropertyRef Name="transaction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionHeader_ToMethod">
+          <End Role="TransactionMethod" Type="Self.TransactionMethod" Multiplicity="1" />
+          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionMethod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionHeader">
+              <PropertyRef Name="method_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionHeader_ToPlatform">
+          <End Role="Platform" Type="Self.Platform" Multiplicity="1" />
+          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionHeader">
+              <PropertyRef Name="platform_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -198,24 +218,12 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Developer" EntityType="Self.Developer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platform" EntityType="Self.Platform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TransactionDetail" EntityType="Self.TransactionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionHeader" EntityType="Self.TransactionHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionMethod" EntityType="Self.TransactionMethod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Platform" EntityType="Self.Platform" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Platform].[Id] AS [Id], 
-    [Platform].[name] AS [name], 
-    [Platform].[image] AS [image]
-    FROM [dbo].[Platform] AS [Platform]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="TransactionMethod" EntityType="Self.TransactionMethod" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TransactionMethod].[Id] AS [Id], 
-    [TransactionMethod].[name] AS [name], 
-    [TransactionMethod].[image] AS [image]
-    FROM [dbo].[TransactionMethod] AS [TransactionMethod]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Cart_ToGame" Association="Self.FK_Cart_ToGame">
             <End Role="Game" EntitySet="Game" />
             <End Role="Cart" EntitySet="Cart" />
@@ -236,13 +244,21 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
             <End Role="User" EntitySet="User" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransactionDetail_ToGame" Association="Self.FK_TransactionDetail_ToGame">
+          <AssociationSet Name="FK_TransactionDetails_ToGame" Association="Self.FK_TransactionDetails_ToGame">
             <End Role="Game" EntitySet="Game" />
-            <End Role="TransactionDetail" EntitySet="TransactionDetail" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransactionDetail_ToHeader" Association="Self.FK_TransactionDetail_ToHeader">
+          <AssociationSet Name="FK_TransactionDetails_ToHeader" Association="Self.FK_TransactionDetails_ToHeader">
             <End Role="TransactionHeader" EntitySet="TransactionHeader" />
-            <End Role="TransactionDetail" EntitySet="TransactionDetail" />
+            <End Role="TransactionDetails" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHeader_ToMethod" Association="Self.FK_TransactionHeader_ToMethod">
+            <End Role="TransactionMethod" EntitySet="TransactionMethod" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHeader_ToPlatform" Association="Self.FK_TransactionHeader_ToPlatform">
+            <End Role="Platform" EntitySet="Platform" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeader" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionHeader_User" Association="Self.FK_TransactionHeader_User">
             <End Role="User" EntitySet="User" />
@@ -286,8 +302,8 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToGame" FromRole="Game" ToRole="Cart" />
           <NavigationProperty Name="Developer" Relationship="Self.FK_Game_ToDeveloper" FromRole="Game" ToRole="Developer" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToGame" FromRole="Game" ToRole="Review" />
-          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetail_ToGame" FromRole="Game" ToRole="TransactionDetail" />
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="Game" ToRole="TransactionDetail" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -303,16 +319,6 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <NavigationProperty Name="Game" Relationship="Self.FK_Review_ToGame" FromRole="Review" ToRole="Game" />
           <NavigationProperty Name="User" Relationship="Self.FK_Review_ToUser" FromRole="Review" ToRole="User" />
         </EntityType>
-        <EntityType Name="TransactionHeader">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="transaction_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Self.FK_TransactionHeader_User" FromRole="TransactionHeader" ToRole="User" />
-          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetail_ToHeader" FromRole="TransactionHeader" ToRole="TransactionDetail" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -326,26 +332,8 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <Property Name="dob" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToUser" FromRole="User" ToRole="Cart" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToUser" FromRole="User" ToRole="Review" />
-          <NavigationProperty Name="TransactionHeader" Relationship="Self.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Platform">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="name" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="TransactionMethod">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="name" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionHeader" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
         </EntityType>
         <Association Name="FK_Cart_ToGame">
           <End Role="Game" Type="Self.Game" Multiplicity="1" />
@@ -407,27 +395,12 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransactionHeader_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TransactionHeader">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Developers" EntityType="Self.Developer" />
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
-          <EntitySet Name="TransactionHeaders" EntityType="Self.TransactionHeader" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Platforms" EntityType="Self.Platform" />
-          <EntitySet Name="TransactionMethods" EntityType="Self.TransactionMethod" />
           <AssociationSet Name="FK_Cart_ToGame" Association="Self.FK_Cart_ToGame">
             <End Role="Game" EntitySet="Games" />
             <End Role="Cart" EntitySet="Carts" />
@@ -448,18 +421,29 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
             <End Role="User" EntitySet="Users" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransactionHeader_User" Association="Self.FK_TransactionHeader_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
-          </AssociationSet>
           <EntitySet Name="TransactionDetails" EntityType="DatabaseModel.TransactionDetail" />
-          <AssociationSet Name="FK_TransactionDetail_ToGame" Association="DatabaseModel.FK_TransactionDetail_ToGame">
+          <EntitySet Name="TransactionHeaders" EntityType="DatabaseModel.TransactionHeader" />
+          <AssociationSet Name="FK_TransactionDetails_ToGame" Association="DatabaseModel.FK_TransactionDetails_ToGame">
             <End Role="Game" EntitySet="Games" />
             <End Role="TransactionDetail" EntitySet="TransactionDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransactionDetail_ToHeader" Association="DatabaseModel.FK_TransactionDetail_ToHeader">
+          <AssociationSet Name="FK_TransactionDetails_ToHeader" Association="DatabaseModel.FK_TransactionDetails_ToHeader">
             <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
             <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHeader_User" Association="DatabaseModel.FK_TransactionHeader_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+          </AssociationSet>
+          <EntitySet Name="Platforms" EntityType="DatabaseModel.Platform" />
+          <EntitySet Name="TransactionMethods" EntityType="DatabaseModel.TransactionMethod" />
+          <AssociationSet Name="FK_TransactionHeader_ToPlatform" Association="DatabaseModel.FK_TransactionHeader_ToPlatform">
+            <End Role="Platform" EntitySet="Platforms" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHeader_ToMethod" Association="DatabaseModel.FK_TransactionHeader_ToMethod">
+            <End Role="TransactionMethod" EntitySet="TransactionMethods" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="TransactionDetail">
@@ -470,10 +454,24 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <Property Name="transaction_id" Type="Int32" Nullable="false" />
           <Property Name="game_id" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Game" Relationship="DatabaseModel.FK_TransactionDetail_ToGame" FromRole="TransactionDetail" ToRole="Game" />
-          <NavigationProperty Name="TransactionHeader" Relationship="DatabaseModel.FK_TransactionDetail_ToHeader" FromRole="TransactionDetail" ToRole="TransactionHeader" />
+          <NavigationProperty Name="Game" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="TransactionDetail" ToRole="Game" />
+          <NavigationProperty Name="TransactionHeader" Relationship="DatabaseModel.FK_TransactionDetails_ToHeader" FromRole="TransactionDetail" ToRole="TransactionHeader" />
         </EntityType>
-        <Association Name="FK_TransactionDetail_ToGame">
+        <EntityType Name="TransactionHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="transaction_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="platform_id" Type="Int32" Nullable="false" />
+          <Property Name="method_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetails_ToHeader" FromRole="TransactionHeader" ToRole="TransactionDetail" />
+          <NavigationProperty Name="User" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="TransactionHeader" ToRole="User" />
+          <NavigationProperty Name="Platform" Relationship="DatabaseModel.FK_TransactionHeader_ToPlatform" FromRole="TransactionHeader" ToRole="Platform" />
+          <NavigationProperty Name="TransactionMethod" Relationship="DatabaseModel.FK_TransactionHeader_ToMethod" FromRole="TransactionHeader" ToRole="TransactionMethod" />
+        </EntityType>
+        <Association Name="FK_TransactionDetails_ToGame">
           <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
           <End Type="DatabaseModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -485,7 +483,7 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransactionDetail_ToHeader">
+        <Association Name="FK_TransactionDetails_ToHeader">
           <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="1" />
           <End Type="DatabaseModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -494,6 +492,60 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
             </Principal>
             <Dependent Role="TransactionDetail">
               <PropertyRef Name="transaction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionHeader_User">
+          <End Type="DatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionHeader">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_ToPlatform" FromRole="Platform" ToRole="TransactionHeader" />
+        </EntityType>
+        <EntityType Name="TransactionMethod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_ToMethod" FromRole="TransactionMethod" ToRole="TransactionHeader" />
+        </EntityType>
+        <Association Name="FK_TransactionHeader_ToPlatform">
+          <End Type="DatabaseModel.Platform" Role="Platform" Multiplicity="1" />
+          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionHeader">
+              <PropertyRef Name="platform_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionHeader_ToMethod">
+          <End Type="DatabaseModel.TransactionMethod" Role="TransactionMethod" Multiplicity="1" />
+          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionMethod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionHeader">
+              <PropertyRef Name="method_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -546,15 +598,6 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TransactionHeaders">
-            <EntityTypeMapping TypeName="DatabaseModel.TransactionHeader">
-              <MappingFragment StoreEntitySet="TransactionHeader">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DatabaseModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -569,30 +612,41 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TransactionDetails">
+            <EntityTypeMapping TypeName="DatabaseModel.TransactionDetail">
+              <MappingFragment StoreEntitySet="TransactionDetails">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="game_id" ColumnName="game_id" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionHeaders">
+            <EntityTypeMapping TypeName="DatabaseModel.TransactionHeader">
+              <MappingFragment StoreEntitySet="TransactionHeader">
+                <ScalarProperty Name="method_id" ColumnName="method_id" />
+                <ScalarProperty Name="platform_id" ColumnName="platform_id" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Platforms">
             <EntityTypeMapping TypeName="DatabaseModel.Platform">
               <MappingFragment StoreEntitySet="Platform">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TransactionMethods">
             <EntityTypeMapping TypeName="DatabaseModel.TransactionMethod">
               <MappingFragment StoreEntitySet="TransactionMethod">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="image" ColumnName="image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TransactionDetails">
-            <EntityTypeMapping TypeName="DatabaseModel.TransactionDetail">
-              <MappingFragment StoreEntitySet="TransactionDetail">
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="game_id" ColumnName="game_id" />
-                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

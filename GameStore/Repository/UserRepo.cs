@@ -21,6 +21,10 @@ namespace GameStore.Repository
         {
             return (from u in db.Users where u.username == uname select u).FirstOrDefault();
         }
+        public static User FindById(int id)
+        {
+            return (from u in db.Users where u.Id == id select u).FirstOrDefault();
+        }
         public static User FindByEmail(string email)
         {
             return (from u in db.Users where u.email == email select u).FirstOrDefault();

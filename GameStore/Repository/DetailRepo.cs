@@ -21,5 +21,14 @@ namespace GameStore.Repository
         {
             return (from td in db.TransactionDetails where td.transaction_id == id select td).ToList();
         }
+        public static List<TransactionDetail> GetDetailsByGame(int id)
+        {
+            return (from td in db.TransactionDetails where td.game_id == id select td).ToList();
+        }
+        public static void removeDetail(TransactionDetail td)
+        {
+            db.TransactionDetails.Remove(td);
+            db.SaveChanges();
+        }
     }
 }

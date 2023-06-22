@@ -14,8 +14,17 @@ namespace GameStore.Model
     
     public partial class TransactionMethod
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TransactionMethod()
+        {
+            this.TransactionHeaders = new HashSet<TransactionHeader>();
+        }
+    
         public int Id { get; set; }
         public string name { get; set; }
         public string image { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionHeader> TransactionHeaders { get; set; }
     }
 }

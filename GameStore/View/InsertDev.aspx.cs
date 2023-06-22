@@ -13,5 +13,10 @@ namespace GameStore.View
         {
 
         }
+
+        protected void btnInsert_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

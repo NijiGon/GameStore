@@ -25,6 +25,10 @@ namespace GameStore.Repository
         {
             return (from g in db.Games where g.dev_id == id select g).ToList();
         }
+        public static Game FindById(int id)
+        {
+            return (from g in db.Games where g.Id == id select g).FirstOrDefault();
+        }
         public static List<Game> GetGamesByAlphabet()
         {
             return (from g in db.Games orderby g.name select g).ToList();

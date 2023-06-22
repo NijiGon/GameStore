@@ -23,9 +23,13 @@ namespace GameStore.Model
         public int Id { get; set; }
         public int user_id { get; set; }
         public System.DateTime transaction_date { get; set; }
+        public int platform_id { get; set; }
+        public int method_id { get; set; }
     
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
+        public virtual User User { get; set; }
+        public virtual Platform Platform { get; set; }
+        public virtual TransactionMethod TransactionMethod { get; set; }
     }
 }

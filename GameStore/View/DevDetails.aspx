@@ -2,4 +2,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div>
+        <%-- container --%>
+        <div>
+            <%-- img container --%>
+            <div>
+                <%-- image --%>
+            </div>
+        </div>
+        <div>
+            <%-- info container --%>
+            <div>
+                <%-- dev title --%>
+            </div>
+            <div>
+                <%-- dev description --%>
+            </div>
+            <div>
+                <%-- games list by dev --%>
+            </div>
+        </div>
+    </div>
 </asp:Content>

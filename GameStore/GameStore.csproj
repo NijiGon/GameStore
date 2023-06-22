@@ -97,7 +97,6 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Content Include="View\Checkout.aspx" />
     <Content Include="View\DevDetails.aspx" />
     <Content Include="View\GameDetails.aspx" />
     <Content Include="View\Home.aspx" />
@@ -118,12 +117,14 @@
   <ItemGroup>
     <Compile Include="Algo\CodeGenerator.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Factory\CartFactory.cs" />
     <Compile Include="Factory\DetailFactory.cs" />
     <Compile Include="Factory\DevFactory.cs" />
     <Compile Include="Factory\GameFactory.cs" />
     <Compile Include="Factory\HeaderFactory.cs" />
     <Compile Include="Factory\ReviewFactory.cs" />
     <Compile Include="Factory\UserFactory.cs" />
+    <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\DevHandler.cs" />
     <Compile Include="Handler\GameHandler.cs" />
     <Compile Include="Handler\ReviewHandler.cs" />
@@ -172,20 +173,16 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CartRepo.cs" />
     <Compile Include="Repository\DatabaseSingleton.cs" />
     <Compile Include="Repository\DetailRepo.cs" />
     <Compile Include="Repository\DevRepo.cs" />
     <Compile Include="Repository\GameRepo.cs" />
     <Compile Include="Repository\HeaderRepo.cs" />
+    <Compile Include="Repository\MethodsRepo.cs" />
+    <Compile Include="Repository\PlatformRepo.cs" />
     <Compile Include="Repository\ReviewRepo.cs" />
     <Compile Include="Repository\UserRepo.cs" />
-    <Compile Include="View\Checkout.aspx.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\Checkout.aspx.designer.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
-    </Compile>
     <Compile Include="View\DevDetails.aspx.cs">
       <DependentUpon>DevDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
