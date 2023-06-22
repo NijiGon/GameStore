@@ -18,6 +18,10 @@ namespace GameStore.Repository
             db.SaveChanges();
 
         }
+        public static Developer FindByName(string name)
+        {
+            return (from d in db.Developers where d.name == name select d).FirstOrDefault();
+        }
         public static Developer FindById(int id)
         {
             return (from d in db.Developers where d.Id == id select d).FirstOrDefault();

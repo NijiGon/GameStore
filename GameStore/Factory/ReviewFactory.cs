@@ -19,14 +19,10 @@ namespace GameStore.Factory
             r.dislike = dislike;
             return r;
         }
-        public static void editReview(Review r, int user_id, int game_id, int rating, string comment, int like, int dislike)
+        public static void editReview(Review r, int rating, string comment)
         {
-            r.user_id = user_id;
-            r.game_id = game_id;
             r.rating = rating;
             r.comment = comment;
-            r.like = like;
-            r.dislike = dislike;
         }
         public static void Liked(Review r)
         {

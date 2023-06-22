@@ -17,10 +17,23 @@ namespace GameStore.Repository
             db.Reviews.Add(r);
             db.SaveChanges();
         }
+        public static Review GetReviewByUserAndGame(int user_id, int game_id)
+        {
+            return (from r in db.Reviews where r.user_id == user_id && r.game_id == game_id select r).FirstOrDefault();
+        }
         public static void removeReview(Review r)
         {
             db.Reviews.Remove(r);
             db.SaveChanges();
+        }
+        public static void EditComment(int user_id, int device_id, string comment, int rating)
+        {
+            Review r = GetReviewByUserAndGame(user_id, device_id);
+            if (r != null)
+            {
+                ReviewFactory.editReview(r, rating, comment);
+                db.SaveChanges();
+            }
         }
         public static List<Review> GetGameReviews(int id)
         {

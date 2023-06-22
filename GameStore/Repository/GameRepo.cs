@@ -17,6 +17,10 @@ namespace GameStore.Repository
             db.Games.Add(g);
             db.SaveChanges();
         }
+        public static Game FindByName(string name)
+        {
+            return (from g in db.Games where g.name == name select g).FirstOrDefault();
+        }
         public static List<Game> GetGames()
         {
             return (from g in db.Games select g).ToList();
