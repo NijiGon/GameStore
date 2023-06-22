@@ -79,6 +79,13 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="Asset\icons\box-arrow-right.svg" />
+    <Content Include="Asset\icons\house-door-fill.svg" />
+    <Content Include="Asset\icons\pencil-fill.svg" />
+    <Content Include="Asset\icons\plus-circle-fill.svg" />
+    <Content Include="Asset\icons\star-fill.svg" />
+    <Content Include="Asset\icons\star.svg" />
+    <Content Include="Asset\icons\trash-fill.svg" />
     <Content Include="Asset\logos\logo.png" />
     <Content Include="Model\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -102,6 +109,7 @@
     <Content Include="View\UpdateGame.aspx" />
     <Content Include="View\ViewCart.aspx" />
     <Content Include="View\ViewCodes.aspx" />
+    <Content Include="View\ViewDetails.aspx" />
     <Content Include="View\ViewGames.aspx" />
     <Content Include="View\ViewHistory.aspx" />
     <Content Include="View\ViewProfile.aspx" />
@@ -261,6 +269,13 @@
     </Compile>
     <Compile Include="View\ViewCodes.aspx.designer.cs">
       <DependentUpon>ViewCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewDetails.aspx.cs">
+      <DependentUpon>ViewDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ViewDetails.aspx.designer.cs">
+      <DependentUpon>ViewDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ViewGames.aspx.cs">
       <DependentUpon>ViewGames.aspx</DependentUpon>
