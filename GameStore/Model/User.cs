@@ -28,6 +28,7 @@ namespace GameStore.Model
         public string password { get; set; }
         public string username { get; set; }
         public Nullable<System.DateTime> dob { get; set; }
+        public string role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }

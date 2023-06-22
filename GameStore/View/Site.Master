@@ -58,6 +58,9 @@
             text-decoration:none;
             color:white;
         }
+        .gray-placeholder::placeholder{
+            color:#8a8a8a;
+        }
     </style>
 </head>
 <body class="bg-dark text-bg-secondary">

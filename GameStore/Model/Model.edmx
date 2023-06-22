@@ -96,6 +96,7 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="dob" Type="date" />
+          <Property Name="role" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Cart_ToGame">
           <End Role="Game" Type="Self.Game" Multiplicity="1" />
@@ -326,6 +327,7 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToUser" FromRole="User" ToRole="Cart" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToUser" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="TransactionHeader" Relationship="Self.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Platform">
           <Key>
@@ -556,6 +558,7 @@ warning 6002: The table/view 'C:\USERS\JOHNY ARIF\SOURCE\REPOS\GAMESTORE\GAMESTO
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DatabaseModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />

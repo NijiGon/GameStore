@@ -32,7 +32,7 @@ namespace GameStore.Controller
                 }
                 return "Incorrect format of email";
             }
-            return "First and last names cannot contain a letter";
+            return "First and last names must be filled and cannot contain a number";
         }
         public static Boolean NameValidator(string name)
         {
@@ -87,7 +87,7 @@ namespace GameStore.Controller
         public static Boolean DOBValidator(string dob)
         {
             DateTime date;
-            if (DateTime.TryParseExact(dob, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            if (DateTime.TryParseExact(dob, "yyyy/MM/dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
             {
                 return true;
             }
