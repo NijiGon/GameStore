@@ -104,8 +104,8 @@
     <Content Include="View\InsertGame.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Register.aspx" />
-    <Content Include="View\UpdateDev.aspx" />
-    <Content Include="View\UpdateGame.aspx" />
+    <Content Include="View\ModifyDev.aspx" />
+    <Content Include="View\ModifyGame.aspx" />
     <Content Include="View\ViewCart.aspx" />
     <Content Include="View\ViewCodes.aspx" />
     <Content Include="View\ViewDetails.aspx" />
@@ -242,19 +242,19 @@
     <Compile Include="View\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="View\UpdateDev.aspx.cs">
-      <DependentUpon>UpdateDev.aspx</DependentUpon>
+    <Compile Include="View\ModifyDev.aspx.cs">
+      <DependentUpon>ModifyDev.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\UpdateDev.aspx.designer.cs">
-      <DependentUpon>UpdateDev.aspx</DependentUpon>
+    <Compile Include="View\ModifyDev.aspx.designer.cs">
+      <DependentUpon>ModifyDev.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\UpdateGame.aspx.cs">
-      <DependentUpon>UpdateGame.aspx</DependentUpon>
+    <Compile Include="View\ModifyGame.aspx.cs">
+      <DependentUpon>ModifyGame.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\UpdateGame.aspx.designer.cs">
-      <DependentUpon>UpdateGame.aspx</DependentUpon>
+    <Compile Include="View\ModifyGame.aspx.designer.cs">
+      <DependentUpon>ModifyGame.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ViewCart.aspx.cs">
       <DependentUpon>ViewCart.aspx</DependentUpon>

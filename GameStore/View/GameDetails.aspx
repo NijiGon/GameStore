@@ -27,6 +27,9 @@
             <div>
                 <%-- game description --%>
             </div>
+            <div>
+                <%-- game reviews --%>
+            </div>
         </div>
     </div>
 </asp:Content>
