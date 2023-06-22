@@ -8,7 +8,7 @@
             <div class="d-flex">
                 <% foreach(var g in games){ %>
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="../Asset/games/<%= g.image %>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><%= g.name %></h5>
                         <p class="card-text">Rp.<%= g.price.ToString("#,##0") %></p>
@@ -23,7 +23,7 @@
             <div class="d-flex">
                 <% foreach(var d in developers){ %>
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="../Asset/developers/<%= d.image %>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><%= d.name %></h5>
                         <a href="GameDetails.aspx?id=<%= d.Id %>" class="btn btn-primary">View Details</a>

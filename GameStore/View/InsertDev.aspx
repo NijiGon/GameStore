@@ -10,7 +10,7 @@
             </div>
             <div class="d-flex flex-column py-1">
                 <asp:Label ID="lbDesc" runat="server" Text="Developer Description"></asp:Label>
-                <asp:TextBox ID="tbdesc" runat="server" type="" placeholder="" CssClass="p-2 rounded-3 form-control bg-dark border-white text-white gray-placeholder"></asp:TextBox>
+                <asp:TextBox ID="tbDesc" runat="server" type="" placeholder="" CssClass="p-2 rounded-3 form-control bg-dark border-white text-white gray-placeholder"></asp:TextBox>
             </div>
             <div class="d-flex flex-column py-1">
                 <asp:Label ID="lbImg" runat="server" Text="Developer Image"></asp:Label>

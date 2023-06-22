@@ -10,7 +10,7 @@ namespace GameStore.Controller
 {
     public class GameController
     {
-        public static string AlbumValidator(string name, string description, int price, int stock, string image, int size)
+        public static string GameValidator(string name, string description, int price, string image, int size)
         {
             if (name.Length < 50)
             {
@@ -18,20 +18,16 @@ namespace GameStore.Controller
                 {
                     if (price >= 100000 && price <= 1000000)
                     {
-                        if (stock > 0)
+                        int mbsize = (size / (1024 * 1024));
+                        if (mbsize < 2)
                         {
-                            int mbsize = (size / (1024 * 1024));
-                            if (mbsize < 2)
+                            if (DevController.checkExtension(image))
                             {
-                                if (DevController.checkExtension(image))
-                                {
-                                    return null;
-                                }
-                                return "File extension must be .png, .jpg, .jpeg, or .jfif";
+                                return null;
                             }
-                            return "File size must be lower than 2MB";
+                            return "File extension must be .png, .jpg, .jpeg, or .jfif";
                         }
-                        return "Stock must be more than 0";
+                        return "File size must be lower than 2MB";
                     }
                     return "Price must be between 100000 and 1000000";
                 }

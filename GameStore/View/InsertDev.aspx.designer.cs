@@ -42,13 +42,13 @@ namespace GameStore.View
         protected global::System.Web.UI.WebControls.Label lbDesc;
 
         /// <summary>
-        /// tbdesc control.
+        /// tbDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbdesc;
+        protected global::System.Web.UI.WebControls.TextBox tbDesc;
 
         /// <summary>
         /// lbImg control.

@@ -9,7 +9,7 @@ namespace GameStore.Controller
 {
     public class DevController
     {
-        public static string DevValidator(string name, string image, int size)
+        public static string DevValidator(string name, string image, int size, string desc)
         {
             Developer d = DevRepo.FindByName(name);
             if (g == null)
@@ -19,7 +19,11 @@ namespace GameStore.Controller
                 {
                     if (checkExtension(image))
                     {
-                        return null;
+                        if(desc.Length < 255)
+                        {
+                            return null;
+                        }
+                        return "Description cannot contain more than 255 letters";
                     }
                     return "File extension must be .png, .jpg, .jpeg, or .jfif";
                 }
