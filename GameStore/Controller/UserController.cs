@@ -30,9 +30,33 @@ namespace GameStore.Controller
                     }
                     return "Password must contain at least an uppercase letter and digit";
                 }
-                return "Incorrect format of email";
+                return "Incorrect email format";
             }
             return "First and last names must be filled and cannot contain a number";
+        }
+        public static string EditValidator(string first, string last, string email, string pass, string uname, string dob)
+        {
+            if ((NameValidator(first) && NameValidator(last)) || string.IsNullOrEmpty(first) || string.IsNullOrEmpty(last))
+            {
+                if (EmailValidator(email) || string.IsNullOrEmpty(email))
+                {
+                    if (PasswordValidator(pass) || string.IsNullOrEmpty(pass))
+                    {
+                        if (UsernameValidator(uname) || string.IsNullOrEmpty(uname))
+                        {
+                            if (DOBValidator(dob) || string.IsNullOrEmpty(dob))
+                            {
+                                return null;
+                            }
+                            return "Incorrect format of Date of Birth";
+                        }
+                        return "Username must be unique and contain at least 6 characters";
+                    }
+                    return "Password must contain at least an uppercase letter and digit";
+                }
+                return "Incorrect email format";
+            }
+            return "First and last names cannot contain a number";
         }
         public static Boolean NameValidator(string name)
         {

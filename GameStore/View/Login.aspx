@@ -2,15 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
         <div class="fs-4" style="width: 30%">
             <div class="d-flex flex-column py-1">
                 <asp:Label ID="lbEmail" runat="server" Text="Email"></asp:Label>
-                <asp:TextBox ID="tbEmail" runat="server" CssClass="p-2 rounded-3 form-control bg-dark border-white text-white gray-placeholder"></asp:TextBox>
+                <asp:TextBox ID="tbEmail" runat="server" CssClass="p-2 rounded-3 form-control bg-dark border-2 border-white text-white gray-placeholder"></asp:TextBox>
             </div>
             <div class="d-flex flex-column py-1">
                 <asp:Label ID="lbPass" runat="server" Text="Password"></asp:Label>
-                <asp:TextBox ID="tbPass" type="password" runat="server" CssClass="p-2 rounded-3 form-control bg-dark border-white text-white gray-placeholder"></asp:TextBox>
+                <asp:TextBox ID="tbPass" type="password" runat="server" CssClass="p-2 rounded-3 form-control border-2 bg-dark border-white text-white gray-placeholder"></asp:TextBox>
             </div>
             <div class="d-flex justify-content-center py-1 fs-6 mt-2">
                 <asp:CheckBox ID="cbAgree" runat="server" class="me-2 rounded-3 form-check" />

@@ -2,6 +2,7 @@
 using GameStore.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -12,7 +13,7 @@ namespace GameStore.Controller
         public static string DevValidator(string name, string image, int size, string desc)
         {
             Developer d = DevRepo.FindByName(name);
-            if (g == null)
+            if (d == null)
             {
                 int mbsize = (size / (1024 * 1024));
                 if ((int)mbsize < 2)

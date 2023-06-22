@@ -18,16 +18,18 @@
             <div>
                 <%-- dev description --%>
             </div>
-            <div>
+            <div class="d-flex">
                 <%-- games list by dev --%>
+                <% foreach(var g in games){ %>
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="../Asset/games/<%= g.image %>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title"><%= g.name %></h5>
+                        <p class="card-text">Rp.<%= g.price.ToString("#,##0") %></p>
+                        <a href="GameDetails.aspx?id=<%= g.Id %>" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
+                <%} %>
             </div>
         </div>
     </div>

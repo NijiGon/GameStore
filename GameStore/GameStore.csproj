@@ -79,6 +79,33 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="Asset\developers\EA.png" />
+    <Content Include="Asset\developers\FromSoft.png" />
+    <Content Include="Asset\developers\MS_XBOX.png" />
+    <Content Include="Asset\developers\Rockstar.png" />
+    <Content Include="Asset\developers\Ubisoft.png" />
+    <Content Include="Asset\games\EA_BF1.png" />
+    <Content Include="Asset\games\EA_DS.png" />
+    <Content Include="Asset\games\EA_NFS.png" />
+    <Content Include="Asset\games\EA_SBF.png" />
+    <Content Include="Asset\games\EA_TF.png" />
+    <Content Include="Asset\games\FS_DS.png" />
+    <Content Include="Asset\games\FS_ER.png" />
+    <Content Include="Asset\games\FS_SEK.png" />
+    <Content Include="Asset\games\MS_FH.png" />
+    <Content Include="Asset\games\MS_FS.png" />
+    <Content Include="Asset\games\MS_HL.png" />
+    <Content Include="Asset\games\MS_ORI.png" />
+    <Content Include="Asset\games\MS_SOT.png" />
+    <Content Include="Asset\games\RS_Bly.png" />
+    <Content Include="Asset\games\RS_GTA.png" />
+    <Content Include="Asset\games\RS_LAN.png" />
+    <Content Include="Asset\games\RS_RDR.png" />
+    <Content Include="Asset\games\Ubi_AC.png" />
+    <Content Include="Asset\games\Ubi_FC.png" />
+    <Content Include="Asset\games\ubi_R6.png" />
+    <Content Include="Asset\games\Ubi_SC.png" />
+    <Content Include="Asset\games\ubi_WD.png" />
     <Content Include="Asset\icons\box-arrow-right.svg" />
     <Content Include="Asset\icons\house-door-fill.svg" />
     <Content Include="Asset\icons\pencil-fill.svg" />
@@ -316,10 +343,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Asset\developers\" />
-    <Folder Include="Asset\games\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

@@ -17,6 +17,12 @@ namespace GameStore.Repository
             db.Users.Add(u);
             db.SaveChanges();
         }
+        public static void editProfile(int id, string first, string last, string email, string password, string username, string dob)
+        {
+            User u = UserRepo.FindById(id);
+            UserFactory.editUser(u, first, last, email, password, username, dob);
+            db.SaveChanges();
+        }
         public static User FindByUsername(string uname)
         {
             return (from u in db.Users where u.username == uname select u).FirstOrDefault();
