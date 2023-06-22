@@ -24,6 +24,8 @@
         <EntityTypeShape EntityType="DatabaseModel.TransactionMethod" Width="1.5" PointX="10.125" PointY="3.625" />
         <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_ToPlatform" />
         <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_ToMethod" />
+        <AssociationConnector Association="DatabaseModel.FK_Game_ToDeveloper1" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_User1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

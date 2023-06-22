@@ -15,13 +15,22 @@
                     <%-- game area --%>
                     <div>
                         <%-- game div --%>
-                        <div class="card" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="row">
+                            <% int i = 0; %>
+                            <% foreach(var g in games){ %>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="card my-3 text-white shadow" style="width: 18rem; background-color: #2e2e2e">
+                                    <img src="../Asset/games/<%= g.image %>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= g.name %></h5>
+                                        <p class="card-text">Rp.<%= g.price.ToString("#,##0") %></p>
+                                        <a href="GameDetails.aspx?id=<%= g.Id %>" class="btn btn-light">View Details</a>
+                                    </div>
+                                </div>
                             </div>
+                            <% i++; %>
+                            <% if (i >= 8) break; %>
+                            <%} %>
                         </div>
                     </div>
                 </div>

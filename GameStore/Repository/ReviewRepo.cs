@@ -42,7 +42,9 @@ namespace GameStore.Repository
 
         public static double GetGameRating(int id)
         {
-            return (from r in db.Reviews where r.game_id == id select r.rating).Average();
+            Review rev = (from r in db.Reviews where r.game_id == id select r).FirstOrDefault();
+            if (rev != null) return (from r in db.Reviews where r.game_id == id select r.rating).Average();
+            return 0;
         }
         public static List<Review> GetUserReviews(int id)
         {

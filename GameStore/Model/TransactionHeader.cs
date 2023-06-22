@@ -31,5 +31,6 @@ namespace GameStore.Model
         public virtual User User { get; set; }
         public virtual Platform Platform { get; set; }
         public virtual TransactionMethod TransactionMethod { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

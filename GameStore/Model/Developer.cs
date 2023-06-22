@@ -14,11 +14,19 @@ namespace GameStore.Model
     
     public partial class Developer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Developer()
+        {
+            this.Games = new HashSet<Game>();
+        }
+    
         public int Id { get; set; }
         public string name { get; set; }
         public string image { get; set; }
         public string description { get; set; }
     
         public virtual Game Game { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Game> Games { get; set; }
     }
 }
