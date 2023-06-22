@@ -116,6 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algo\CodeGenerator.cs" />
+    <Compile Include="Controller\CartController.cs" />
+    <Compile Include="Controller\DevController.cs" />
+    <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Controller\ReviewController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Factory\CartFactory.cs" />
     <Compile Include="Factory\DetailFactory.cs" />
