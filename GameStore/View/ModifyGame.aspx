@@ -8,7 +8,7 @@
                 <div>
                     <div class="input-group mb-3 d-flex flex-column">
                         <asp:Label ID="lbMethod" runat="server" Text="Choose developer:"></asp:Label>
-                        <asp:DropDownList ID="ddlDev" CssClass="rounded-3 bg-dark p-2 text-white" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlDev" Enabled="false" CssClass="rounded-3 bg-dark p-2 text-white" runat="server"></asp:DropDownList>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-grayish border-2" id="basic-addon1">Game Title</span>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="input-group mb-3 d-flex flex-column">
                         <asp:Label ID="lbImg" runat="server" Text="Upload game image file:"></asp:Label>
-                        <asp:FileUpload ID="fuImg" CssClass="rounded-3 bg-darker" runat="server" />
+                        <asp:FileUpload ID="fuImg" Enabled="false" CssClass="rounded-3 bg-darker" runat="server" />
                     </div>
                     <div class="input-group mb-3">
                         <asp:Label ID="lbError" runat="server" Text=""></asp:Label>

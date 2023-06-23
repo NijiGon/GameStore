@@ -10,7 +10,7 @@ namespace GameStore.Controller
 {
     public class GameController
     {
-        public static string GameValidator(string name, string description, int price, string image, int size)
+        public static string GameValidator(string name, string description, int price, string image)
         {
             if (name.Length < 50)
             {
@@ -18,16 +18,31 @@ namespace GameStore.Controller
                 {
                     if (price >= 100000 && price <= 1000000)
                     {
-                        int mbsize = (size / (1024 * 1024));
-                        if (mbsize < 2)
+                        if (DevController.checkExtension(image))
                         {
-                            if (DevController.checkExtension(image))
-                            {
-                                return null;
-                            }
-                            return "File extension must be .png, .jpg, .jpeg, or .jfif";
+                            return null;
                         }
-                        return "File size must be lower than 2MB";
+                        return "File extension must be .png, .jpg, .jpeg, or .jfif";
+                    }
+                    return "Price must be between 100000 and 1000000";
+                }
+                return "Description must be smaller than 255 characters";
+            }
+            return "Album name must be smaller than 50 characters";
+        }
+        public static string EditValidator(string name, string description, int? price, string image)
+        {
+            if (name.Length < 50 || !string.IsNullOrEmpty(name))
+            {
+                if (description.Length < 255 || !string.IsNullOrEmpty(image))
+                {
+                    if (price >= 100000 && price <= 1000000 || price == null)
+                    {
+                        if (DevController.checkExtension(image) || !string.IsNullOrEmpty(image))
+                        {
+                            return null;
+                        }
+                        return "File extension must be .png, .jpg, .jpeg, or .jfif";
                     }
                     return "Price must be between 100000 and 1000000";
                 }

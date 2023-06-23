@@ -24,8 +24,7 @@ namespace GameStore.View
             string desc = tbdesc.Text;
             int price = Convert.ToInt32(tbPrice.Text);
             string img = fuImg.FileName;
-            int size = fuImg.PostedFile.ContentLength;
-            string errorCode = GameController.GameValidator(name, desc, price, img, size);
+            string errorCode = GameController.GameValidator(name, desc, price, img);
             if (string.IsNullOrEmpty(errorCode))
             {
                 GameRepo.addGame(dev_id, name, desc, price, img);

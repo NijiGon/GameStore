@@ -17,6 +17,11 @@ namespace GameStore.Repository
             db.Games.Add(g);
             db.SaveChanges();
         }
+        public static void updateGame(Game g, int dev_id, string name, string desc, int price, string image)
+        {
+            GameFactory.editGame(g, dev_id, name, desc, price, image);
+            db.SaveChanges();
+        }
         public static Game FindByName(string name)
         {
             return (from g in db.Games where g.name == name select g).FirstOrDefault();

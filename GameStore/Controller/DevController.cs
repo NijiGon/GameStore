@@ -10,25 +10,20 @@ namespace GameStore.Controller
 {
     public class DevController
     {
-        public static string DevValidator(string name, string image, int size, string desc)
+        public static string DevValidator(string name, string image, string desc)
         {
             Developer d = DevRepo.FindByName(name);
             if (d == null)
             {
-                int mbsize = (size / (1024 * 1024));
-                if ((int)mbsize < 2)
+                if (checkExtension(image))
                 {
-                    if (checkExtension(image))
+                    if(desc.Length < 255)
                     {
-                        if(desc.Length < 255)
-                        {
-                            return null;
-                        }
-                        return "Description cannot contain more than 255 letters";
+                        return null;
                     }
-                    return "File extension must be .png, .jpg, .jpeg, or .jfif";
+                    return "Description cannot contain more than 255 letters";
                 }
-                return "File size must be lower than 2MB";
+                return "File extension must be .png, .jpg, .jpeg, or .jfif";   
             }
             return "Artist name must be unique";
         }

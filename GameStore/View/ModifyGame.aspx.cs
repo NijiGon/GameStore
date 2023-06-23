@@ -1,4 +1,5 @@
-﻿using GameStore.Model;
+﻿using GameStore.Controller;
+using GameStore.Model;
 using GameStore.Repository;
 using System;
 using System.Collections.Generic;
@@ -33,18 +34,37 @@ namespace GameStore.View
                 tbName.ReadOnly = false;
                 tbDesc.ReadOnly = false;
                 tbPrice.ReadOnly = false;
+                ddlDev.Enabled = true;
+                fuImg.Enabled = true;
             }
             else
             {
                 tbName.ReadOnly = true;
                 tbDesc.ReadOnly = true;
                 tbPrice.ReadOnly = true;
+                ddlDev.Enabled = false;
+                fuImg.Enabled = false;
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            g = GameRepo.FindById(id);
+            string name = tbName.Text;
+            string desc = tbDesc.Text;
+            string image = fuImg.FileName;
+            int price = Convert.ToInt32(tbPrice.Text);
+            int dev_id = Convert.ToInt32(ddlDev.SelectedValue);
+            string errorCode = GameController.GameValidator(name, desc, price, image);
+            if (string.IsNullOrEmpty(errorCode))
+            {
+                GameRepo.updateGame(g, dev_id, name, desc, price, image);
+            }
+            else
+            {
+                lbError.Text = errorCode;
+            }
         }
     }
 }

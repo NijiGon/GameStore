@@ -21,8 +21,7 @@ namespace GameStore.View
             string name = tbName.Text;
             string img = fuImg.FileName;
             string desc = tbDesc.Text;
-            int size = fuImg.PostedFile.ContentLength;
-            string errorCode = DevController.DevValidator(name, img, size, desc);
+            string errorCode = DevController.DevValidator(name, img, desc);
             if (string.IsNullOrEmpty(errorCode))
             {
                 DevRepo.addDev(name, img, desc);

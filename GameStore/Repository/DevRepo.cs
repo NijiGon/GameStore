@@ -18,6 +18,11 @@ namespace GameStore.Repository
             db.SaveChanges();
 
         }
+        public static void updateDev(Developer d, string name, string image, string desc)
+        {
+            DevFactory.editDev(d, name, image, desc);
+            db.SaveChanges();
+        }
         public static Developer FindByName(string name)
         {
             return (from d in db.Developers where d.name == name select d).FirstOrDefault();
