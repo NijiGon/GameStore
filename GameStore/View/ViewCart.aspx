@@ -8,8 +8,9 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container w-50 fs-4" style="margin-top: 15vh; min-height:60vh">
-        <table class="table">
+    <div class="container w-50 d-flex align-items-center justify-content-center fs-4" style="min-height:100vh">
+        <div class="d-flex flex-column justify-content-center align-content-center">
+            <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -32,23 +33,23 @@
                 <%} %>
             </tbody>
         </table>
-        <div class="d-flex justify-content-between">
-            <% if (items != null) { %>
-            <div class="d-flex flex-column mt-3">
-                <asp:Label ID="lbPlatform" runat="server" Text="Choose a platform"></asp:Label>
-                <asp:DropDownList ID="ddlPlatform" CssClass="rounded-2 bg-dark text-white" runat="server"></asp:DropDownList>
-            </div>
-            <div class="d-flex flex-column mt-3">
-                <asp:Label ID="lbMethod" runat="server" Text="Choose a payment method"></asp:Label>
-                <asp:DropDownList ID="ddlMethod" CssClass="rounded-2 bg-dark text-white" runat="server"></asp:DropDownList>
-            </div>
-            <div class="d-flex justify-content-end mt-2">
-                <div class="ms-auto d-flex flex-column">
-                    <asp:Label ID="Label1" runat="server" Text="Confirm Transaction"></asp:Label>
-                    <asp:Button ID="btnCheckout" runat="server" CssClass="rounded-3 border-0 m-auto py-2 px-3 bg-body-tertiary" Text="Checkout" OnClick="btnCheckout_Click" />
+            <div class="d-flex justify-content-between">
+                <% if (items != null) { %>
+                <div class="d-flex flex-column mt-3 me-3 fs-5">
+                    <asp:Label ID="lbPlatform" runat="server" Text="Choose a platform"></asp:Label>
+                    <asp:DropDownList ID="ddlPlatform" CssClass="rounded-2 bg-dark text-white" runat="server"></asp:DropDownList>
                 </div>
+                <div class="d-flex flex-column mt-3 me-3 fs-5">
+                    <asp:Label ID="lbMethod" runat="server" Text="Choose a payment method"></asp:Label>
+                    <asp:DropDownList ID="ddlMethod" CssClass="rounded-2 bg-dark text-white" runat="server"></asp:DropDownList>
+                </div>
+                <div class="d-flex justify-content-end mt-4 fs-5">
+                    <div class="ms-auto d-flex flex-column">
+                        <asp:Button ID="btnCheckout" runat="server" CssClass="rounded-3 border-0 m-auto py-2 px-3 bg-body-tertiary" Text="Checkout" OnClick="btnCheckout_Click" />
+                    </div>
+                </div>
+                <%} %>
             </div>
-            <%} %>
         </div>
     </div>
 </asp:Content>

@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container d-flex flex-column px-2 py-1" style="margin-top:12vh;">
+    <div class="container d-flex flex-column px-2 py-1 mb-5" style="margin-top:10vh;">
         <div class="">
             <h1>Trending Games</h1>
             <div class="row border-top border-white border-2 pt-3">

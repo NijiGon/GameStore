@@ -1,19 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Site.Master" AutoEventWireup="true" CodeBehind="ViewProfile.aspx.cs" Inherits="GameStore.View.ViewProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .bg-grayish{
-            background-color: #383838 !important;
-            border-color: #383838 !important;
-            color:white !important;
-        }
-        .bg-grayeesh{
-            background-color: #424242 !important;
-            border-color: #383838 !important;
-        }
+        
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="d-flex align-items-center justify-content-center" style="height: 75vh">
+    <div class="d-flex align-items-center justify-content-center" style="height: 100vh">
         <div class="shadow rounded-4 w-50 d-flex align-items-center justify-content-center mt-5" style="background-color:#1c1c1c; min-height: 350px;">
             <div class="profile-info ms-5 w-100 py-5 me-5">
                 <div class="d-flex">

@@ -37,6 +37,14 @@ namespace GameStore.Repository
         {
             return (from g in db.Games orderby g.name select g).ToList();
         }
+        public static List<Game> GetGamesByPrice()
+        {
+            return (from g in db.Games orderby g.price select g).ToList();
+        }
+        public static List<Game> GetGamesByPriceDesc()
+        {
+            return (from g in db.Games orderby g.price descending select g).ToList();
+        }
         public static List<Game> GetGamesByAlphabetDesc()
         {
             return (from g in db.Games orderby g.name descending select g).ToList();

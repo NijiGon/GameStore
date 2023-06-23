@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="fs-4" style="width: 40%">
             <div class="d-flex py-1 justify-content-between">
                 <div class="d-flex flex-column py-1" style="width:45%">
@@ -16,7 +16,7 @@
             </div>
             <div class="d-flex flex-column py-1">
                 <asp:Label ID="lbEmail" runat="server" Text="Email"></asp:Label>
-                <asp:TextBox ID="tbEmail" runat="server" placeholder="john.smith10@yahoo.com" CssClass="p-2 border-2 rounded-3 form-control bg-dark border-white text-white gray-placeholder"></asp:TextBox>
+                <asp:TextBox ID="tbEmail" runat="server" placeholder="johnsmith10@exmaple.com" CssClass="p-2 border-2 rounded-3 form-control bg-dark border-white text-white gray-placeholder"></asp:TextBox>
             </div>
             <div class="d-flex flex-column py-1">
                 <asp:Label ID="lbPass" runat="server" Text="Password"></asp:Label>
