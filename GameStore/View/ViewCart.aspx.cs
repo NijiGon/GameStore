@@ -34,16 +34,17 @@ namespace GameStore.View
             if (items != null && !string.IsNullOrEmpty(ddlMethod.SelectedValue) && !string.IsNullOrEmpty(ddlPlatform.SelectedValue))
             {
                 User u = Session["user"] != null ? Session["user"] as User : null;
-                int user_id = Convert.ToInt32(u.Id);
+                int user_id = u.Id;
                 string date = DateTime.Now.ToString();
                 int method_id = Convert.ToInt32(ddlMethod.SelectedValue);
                 int platform_id = Convert.ToInt32(ddlPlatform.SelectedValue);
-                int transaction_id = TransactionHandler.createTransaction(date, user_id, method_id, platform_id);
+                int transaction_id = TransactionHandler.createTransaction(date, user_id, platform_id, method_id);
                 foreach (Cart c in items)
                 {
                     DetailRepo.addDetail(transaction_id, c.game_id, c.quantity);
+                    CartRepo.removeItem(c);
                 }
-                Response.Redirect("ViewCodes.aspx");
+                Response.Redirect("ViewCodes.aspx?id=" + transaction_id);
             }
         }
     }

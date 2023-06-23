@@ -289,7 +289,6 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Game" Relationship="Self.FK_Game_ToDeveloper" FromRole="Developer" ToRole="Game" />
           <NavigationProperty Name="Games" Relationship="DatabaseModel.FK_Game_ToDeveloper1" FromRole="Developer" ToRole="Game" />
         </EntityType>
         <EntityType Name="Game">
@@ -302,7 +301,6 @@
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToGame" FromRole="Game" ToRole="Cart" />
-          <NavigationProperty Name="Developer" Relationship="Self.FK_Game_ToDeveloper" FromRole="Game" ToRole="Developer" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToGame" FromRole="Game" ToRole="Review" />
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="Game" ToRole="TransactionDetail" />
@@ -337,9 +335,8 @@
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToUser" FromRole="User" ToRole="Cart" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToUser" FromRole="User" ToRole="Review" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TransactionHeader" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
-          <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_User1" FromRole="User" ToRole="TransactionHeader" />
-        </EntityType>
+          <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
+          </EntityType>
         <Association Name="FK_Cart_ToGame">
           <End Role="Game" Type="Self.Game" Multiplicity="1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
@@ -427,34 +424,30 @@
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
           <EntitySet Name="TransactionDetails" EntityType="DatabaseModel.TransactionDetail" />
-          <EntitySet Name="TransactionHeaders" EntityType="DatabaseModel.TransactionHeader" />
           <AssociationSet Name="FK_TransactionDetails_ToGame" Association="DatabaseModel.FK_TransactionDetails_ToGame">
             <End Role="Game" EntitySet="Games" />
             <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <EntitySet Name="Platforms" EntityType="DatabaseModel.Platform" />
+          <EntitySet Name="TransactionMethods" EntityType="DatabaseModel.TransactionMethod" />
+          <AssociationSet Name="FK_Game_ToDeveloper1" Association="DatabaseModel.FK_Game_ToDeveloper1">
+            <End Role="Developer" EntitySet="Developers" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <EntitySet Name="TransactionHeaders" EntityType="DatabaseModel.TransactionHeader" />
+          <AssociationSet Name="FK_TransactionHeader_ToPlatform" Association="DatabaseModel.FK_TransactionHeader_ToPlatform">
+            <End Role="Platform" EntitySet="Platforms" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionDetails_ToHeader" Association="DatabaseModel.FK_TransactionDetails_ToHeader">
             <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
             <End Role="TransactionDetail" EntitySet="TransactionDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransactionHeader_User" Association="DatabaseModel.FK_TransactionHeader_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
-          </AssociationSet>
-          <EntitySet Name="Platforms" EntityType="DatabaseModel.Platform" />
-          <EntitySet Name="TransactionMethods" EntityType="DatabaseModel.TransactionMethod" />
-          <AssociationSet Name="FK_TransactionHeader_ToPlatform" Association="DatabaseModel.FK_TransactionHeader_ToPlatform">
-            <End Role="Platform" EntitySet="Platforms" />
-            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
-          </AssociationSet>
           <AssociationSet Name="FK_TransactionHeader_ToMethod" Association="DatabaseModel.FK_TransactionHeader_ToMethod">
             <End Role="TransactionMethod" EntitySet="TransactionMethods" />
             <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
           </AssociationSet>
-          <AssociationSet Name="FK_Game_ToDeveloper1" Association="DatabaseModel.FK_Game_ToDeveloper1">
-            <End Role="Developer" EntitySet="Developers" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransactionHeader_User1" Association="DatabaseModel.FK_TransactionHeader_User1">
+          <AssociationSet Name="FK_TransactionHeader_User" Association="DatabaseModel.FK_TransactionHeader_User">
             <End Role="User" EntitySet="Users" />
             <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
           </AssociationSet>
@@ -470,21 +463,6 @@
           <NavigationProperty Name="Game" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="TransactionDetail" ToRole="Game" />
           <NavigationProperty Name="TransactionHeader" Relationship="DatabaseModel.FK_TransactionDetails_ToHeader" FromRole="TransactionDetail" ToRole="TransactionHeader" />
         </EntityType>
-        <EntityType Name="TransactionHeader">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="transaction_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="platform_id" Type="Int32" Nullable="false" />
-          <Property Name="method_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetails_ToHeader" FromRole="TransactionHeader" ToRole="TransactionDetail" />
-          <NavigationProperty Name="User" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="TransactionHeader" ToRole="User" />
-          <NavigationProperty Name="Platform" Relationship="DatabaseModel.FK_TransactionHeader_ToPlatform" FromRole="TransactionHeader" ToRole="Platform" />
-          <NavigationProperty Name="TransactionMethod" Relationship="DatabaseModel.FK_TransactionHeader_ToMethod" FromRole="TransactionHeader" ToRole="TransactionMethod" />
-          <NavigationProperty Name="User1" Relationship="DatabaseModel.FK_TransactionHeader_User1" FromRole="TransactionHeader" ToRole="User" />
-        </EntityType>
         <Association Name="FK_TransactionDetails_ToGame">
           <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
           <End Type="DatabaseModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
@@ -494,30 +472,6 @@
             </Principal>
             <Dependent Role="TransactionDetail">
               <PropertyRef Name="game_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransactionDetails_ToHeader">
-          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="1" />
-          <End Type="DatabaseModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TransactionHeader">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TransactionDetail">
-              <PropertyRef Name="transaction_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransactionHeader_User">
-          <End Type="DatabaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TransactionHeader">
-              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -539,6 +493,32 @@
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_ToMethod" FromRole="TransactionMethod" ToRole="TransactionHeader" />
         </EntityType>
+        <Association Name="FK_Game_ToDeveloper1">
+          <End Type="DatabaseModel.Developer" Role="Developer" Multiplicity="1" />
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="dev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TransactionHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="transaction_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="platform_id" Type="Int32" Nullable="false" />
+          <Property Name="method_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Platform" Relationship="DatabaseModel.FK_TransactionHeader_ToPlatform" FromRole="TransactionHeader" ToRole="Platform" />
+          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetails_ToHeader" FromRole="TransactionHeader" ToRole="TransactionDetail" />
+          <NavigationProperty Name="TransactionMethod" Relationship="DatabaseModel.FK_TransactionHeader_ToMethod" FromRole="TransactionHeader" ToRole="TransactionMethod" />
+          <NavigationProperty Name="User" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="TransactionHeader" ToRole="User" />
+        </EntityType>
         <Association Name="FK_TransactionHeader_ToPlatform">
           <End Type="DatabaseModel.Platform" Role="Platform" Multiplicity="1" />
           <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="*" />
@@ -548,6 +528,18 @@
             </Principal>
             <Dependent Role="TransactionHeader">
               <PropertyRef Name="platform_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetails_ToHeader">
+          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="1" />
+          <End Type="DatabaseModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="transaction_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -563,19 +555,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Game_ToDeveloper1">
-          <End Type="DatabaseModel.Developer" Role="Developer" Multiplicity="1" />
-          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Developer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="dev_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransactionHeader_User1">
+        <Association Name="FK_TransactionHeader_User">
           <End Type="DatabaseModel.User" Role="User" Multiplicity="1" />
           <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="*" />
           <ReferentialConstraint>
@@ -660,17 +640,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TransactionHeaders">
-            <EntityTypeMapping TypeName="DatabaseModel.TransactionHeader">
-              <MappingFragment StoreEntitySet="TransactionHeader">
-                <ScalarProperty Name="method_id" ColumnName="method_id" />
-                <ScalarProperty Name="platform_id" ColumnName="platform_id" />
-                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Platforms">
             <EntityTypeMapping TypeName="DatabaseModel.Platform">
               <MappingFragment StoreEntitySet="Platform">
@@ -685,6 +654,17 @@
               <MappingFragment StoreEntitySet="TransactionMethod">
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionHeaders">
+            <EntityTypeMapping TypeName="DatabaseModel.TransactionHeader">
+              <MappingFragment StoreEntitySet="TransactionHeader">
+                <ScalarProperty Name="method_id" ColumnName="method_id" />
+                <ScalarProperty Name="platform_id" ColumnName="platform_id" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

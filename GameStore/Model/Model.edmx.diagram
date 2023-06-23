@@ -16,16 +16,15 @@
         <AssociationConnector Association="DatabaseModel.FK_Review_ToGame" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK_Review_ToUser" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DatabaseModel.TransactionDetail" Width="1.5" PointX="15.125" PointY="4" />
-        <EntityTypeShape EntityType="DatabaseModel.TransactionHeader" Width="1.5" PointX="13.125" PointY="0.875" />
         <AssociationConnector Association="DatabaseModel.FK_TransactionDetails_ToGame" />
-        <AssociationConnector Association="DatabaseModel.FK_TransactionDetails_ToHeader" />
-        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_User" />
         <EntityTypeShape EntityType="DatabaseModel.Platform" Width="1.5" PointX="9.75" PointY="0.875" />
         <EntityTypeShape EntityType="DatabaseModel.TransactionMethod" Width="1.5" PointX="10.125" PointY="3.625" />
-        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_ToPlatform" />
-        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_ToMethod" />
         <AssociationConnector Association="DatabaseModel.FK_Game_ToDeveloper1" />
-        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_User1" />
+        <EntityTypeShape EntityType="DatabaseModel.TransactionHeader" Width="1.5" PointX="12.625" PointY="1.5" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_ToPlatform" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionDetails_ToHeader" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_ToMethod" />
+        <AssociationConnector Association="DatabaseModel.FK_TransactionHeader_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

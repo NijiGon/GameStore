@@ -25,7 +25,6 @@ namespace GameStore.Model
         public string image { get; set; }
         public string description { get; set; }
     
-        public virtual Game Game { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> Games { get; set; }
     }

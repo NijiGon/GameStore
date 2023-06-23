@@ -37,6 +37,28 @@ namespace GameStore.View
                 Response.Redirect("Login.aspx");
             }
         }
+        protected void Star_Click(object sender, EventArgs e)
+        {
+            var starButton = (LinkButton)sender;
+            var starIndex = int.Parse(starButton.CommandArgument);
+
+            hiddenStarIndex.Value = starIndex.ToString();
+
+            // Loop through all the star controls
+            for (int i = 1; i <= starIndex; i++)
+            {
+                var filledStar = (Image)starButton.FindControl("filledStar" + i);
+                filledStar.Visible = true;
+
+                var emptyStar = (Image)starButton.FindControl("emptyStar" + i);
+                emptyStar.Visible = false;
+
+                //filledStar.CssClass = "star-img bi bi-star-fill";
+                //emptyStar.CssClass = "star-img bi bi-star";
+            }
+
+            // Perform any other necessary operations, such as submitting the rating
+        }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {

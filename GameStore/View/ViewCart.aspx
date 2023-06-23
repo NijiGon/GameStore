@@ -1,38 +1,34 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Site.Master" AutoEventWireup="true" CodeBehind="ViewCart.aspx.cs" Inherits="GameStore.View.ViewCart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        th,tr{
-            background-color: #212529 !important;
-            color: white !important;
-        }
+        
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container w-50 d-flex align-items-center justify-content-center fs-4" style="min-height:100vh">
         <div class="d-flex flex-column justify-content-center align-content-center">
             <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Game</th>
-                    <th scope="col">Developer</th>
-                    <th scope="col">Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% int i = 1; %>
-                <% foreach(var c in items){ %>
-                
-                <tr>
-                    <th scope="row"><%= i %></th>
-                    <td><%= c.Game.name %></td>
-                    <td><%= c.Game.Developer1.name %></td>
-                    <td><%= c.quantity %></td>
-                </tr>
-                <% i++; %>
-                <%} %>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Developer</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% int i = 1; %>
+                    <% foreach(var c in items){ %>
+                    <tr>
+                        <th scope="row"><%= i %></th>
+                        <td><%= c.Game.name %></td>
+                        <td><%= c.Game.Developer1.name %></td>
+                        <td><%= c.quantity %></td>
+                    </tr>
+                    <% i++; %>
+                    <%} %>
+                </tbody>
+            </table>
             <div class="d-flex justify-content-between">
                 <% if (items != null) { %>
                 <div class="d-flex flex-column mt-3 me-3 fs-5">

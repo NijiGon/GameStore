@@ -106,12 +106,13 @@
     <Content Include="Asset\games\ubi_R6.png" />
     <Content Include="Asset\games\Ubi_SC.png" />
     <Content Include="Asset\games\ubi_WD.png" />
+    <Content Include="Asset\icons\blank.png" />
     <Content Include="Asset\icons\box-arrow-right.svg" />
     <Content Include="Asset\icons\house-door-fill.svg" />
     <Content Include="Asset\icons\pencil-fill.svg" />
     <Content Include="Asset\icons\plus-circle-fill.svg" />
-    <Content Include="Asset\icons\star-fill.svg" />
-    <Content Include="Asset\icons\star.svg" />
+    <Content Include="Asset\icons\star-fill.png" />
+    <Content Include="Asset\icons\star.png" />
     <Content Include="Asset\icons\trash-fill.svg" />
     <Content Include="Asset\logos\logo.png" />
     <Content Include="Model\Model.Context.tt">

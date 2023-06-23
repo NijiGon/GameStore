@@ -1,7 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Site.Master" AutoEventWireup="true" CodeBehind="GameDetails.aspx.cs" Inherits="GameStore.View.GameDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xxxxx" crossorigin="anonymous" />
     <style>
-        
+        .auto-growth {
+            overflow: hidden;
+            resize: none;
+        }
+        .star-img{
+            height:25px;
+            width:auto;
+        }
+        .star-img svg{
+            fill:red !important;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -46,6 +57,55 @@
                     <p><%= g.description %></p>
                 </div>
             </div>
+            <div class="mb-3">
+                <h3>Add a comment</h3>
+                <div class="d-flex w-100" style="margin-top: -10px;">
+                    <div class="w-100" style="margin-top: 2px;">
+                        <%--<asp:LinkButton ID="star1" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="1">
+                            <asp:Image ID="emptyStar1" runat="server" CssClass="star-img bi bi-star" ImageUrl="../Asset/icons/blank.png" />
+                            <asp:Image ID="filledStar1" runat="server" CssClass="star-img bi bi-star-fill" ImageUrl="../Asset/icons/blank.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star2" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="1">
+                            <asp:Image ID="emptyStar2" runat="server" CssClass="star-img bi bi-star" ImageUrl="../Asset/icons/blank.png" />
+                            <asp:Image ID="filledStar2" runat="server" CssClass="star-img bi bi-star-fill" ImageUrl="../Asset/icons/blank.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star3" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="1">
+                            <asp:Image ID="emptyStar3" runat="server" CssClass="star-img bi bi-star" ImageUrl="../Asset/icons/blank.png" />
+                            <asp:Image ID="filledStar3" runat="server" CssClass="star-img bi bi-star-fill" ImageUrl="../Asset/icons/blank.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star4" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="1">
+                            <asp:Image ID="emptyStar4" runat="server" CssClass="star-img bi bi-star" ImageUrl="../Asset/icons/blank.png" />
+                            <asp:Image ID="filledStar4" runat="server" CssClass="star-img bi bi-star-fill" ImageUrl="../Asset/icons/blank.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star5" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="1">
+                            <asp:Image ID="emptyStar5" runat="server" CssClass="star-img bi bi-star" ImageUrl="../Asset/icons/blank.png" />
+                            <asp:Image ID="filledStar5" runat="server" CssClass="star-img bi bi-star-fill" ImageUrl="../Asset/icons/blank.png" Visible="false" />
+                        </asp:LinkButton>--%>
+                        <asp:LinkButton ID="star1" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="1">
+                            <asp:Image ID="emptyStar1" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star.png" />
+                            <asp:Image ID="filledStar1" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star-fill.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star2" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="2">
+                            <asp:Image ID="emptyStar2" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star.png" />
+                            <asp:Image ID="filledStar2" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star-fill.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star3" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="3">
+                            <asp:Image ID="emptyStar3" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star.png" />
+                            <asp:Image ID="filledStar3" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star-fill.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star4" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="4">
+                            <asp:Image ID="emptyStar4" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star.png" />
+                            <asp:Image ID="filledStar4" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star-fill.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="star5" CssClass="star" runat="server" OnClick="Star_Click" CommandArgument="5">
+                            <asp:Image ID="emptyStar5" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star.png" />
+                            <asp:Image ID="filledStar5" runat="server" CssClass="star-img" ImageUrl="../Asset/icons/star-fill.png" Visible="false" />
+                        </asp:LinkButton>
+                        <asp:HiddenField ID="hiddenStarIndex" runat="server" />
+                    </div>
+                </div>
+                <asp:TextBox ID="txtComments" CssClass="p-2 rounded-0 rounded-top-2 form-control border-0 border-bottom bg-darker border-white text-white gray-placeholder auto-growth" placeholder="Add a comment..." runat="server" TextMode="MultiLine" Rows="1"></asp:TextBox>
+            </div>
             <div>
                 <%-- game reviews --%>
                 <h3>User Reviews</h3>
@@ -70,4 +130,11 @@
             </div>
         </div>
     </div>
+    <script>
+    var txtComments = document.getElementById('<%= txtComments.ClientID %>');
+    txtComments.addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+    </script>
 </asp:Content>
