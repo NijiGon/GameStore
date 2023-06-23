@@ -9,7 +9,7 @@ namespace GameStore.Handler
 {
     public class DevHandler
     {
-        public static void deleteArtist(int id)
+        public static void deleteDev(int id)
         {
             Developer delete = DevRepo.FindById(id);
             if (delete == null)

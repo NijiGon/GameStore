@@ -1,4 +1,5 @@
-﻿using GameStore.Model;
+﻿using GameStore.Handler;
+using GameStore.Model;
 using GameStore.Repository;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,14 @@ namespace GameStore.View
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-
+            int dev_id = Convert.ToInt32(Request.QueryString["id"]);
+            Response.Redirect("ModifyDev.aspx?id=" + dev_id);
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-
+            int dev_id = Convert.ToInt32(Request.QueryString["id"]);
+            DevHandler.deleteDev(dev_id);
         }
     }
 }

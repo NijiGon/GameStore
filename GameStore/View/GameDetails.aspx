@@ -24,6 +24,9 @@
                 <%-- image --%>
                 <img src="../Asset/games/<%= g.image %>" class="w-100 rounded-3" alt="Alternate Text" />
             </div>
+            <div class="text-center fs-4 mt-3">
+                <i class="bi bi-star-fill"><%= rating.ToString("0.00") %></i>
+            </div>
             <div class="my-3 text-center">
                 <%-- price --%>
                 <h3>Rp.<%= g.price.ToString("#,##0") %></h3>
@@ -33,6 +36,10 @@
                 <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-body-tertiary w-100" OnClick="btnAdd_Click" />
                 <% if (u != null)
                     { %>
+                <% if (rev != null)
+                    { %>
+                <asp:Button ID="btnRemove" runat="server" Text="Remove Review" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-danger w-100" OnClick="btnRemove_Click" />
+                <%} %>
                 <% if (u.role == "admin")
                     { %>
                 <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-warning w-100" OnClick="btnEdit_Click" />
@@ -104,9 +111,33 @@
                         <asp:HiddenField ID="hiddenStarIndex" runat="server" />
                     </div>
                 </div>
-                <asp:TextBox ID="txtComments" CssClass="p-2 rounded-0 rounded-top-2 form-control border-0 border-bottom bg-darker border-white text-white gray-placeholder auto-growth" placeholder="Add a comment..." runat="server" TextMode="MultiLine" Rows="1"></asp:TextBox>
+                <div class="d-flex mt-3">
+                    <asp:TextBox ID="txtComment" CssClass="p-2 rounded-0 rounded-top-2 form-control border-0 border-bottom bg-darker border-white text-white gray-placeholder auto-growth" placeholder="Add a comment..." runat="server" TextMode="MultiLine" Rows="1"></asp:TextBox>
+                    <asp:Button ID="btnComment" CssClass="rounded-end-3 border-0 bg-body-tertiary" runat="server" Text="Comment" OnClick="btnComment_Click" />
+                </div>
             </div>
-            <div>
+            <% if (rev != null){ %>
+            <div class="mt-4">
+                <h3>Your Review</h3>
+                <div class="px-3 py-3 d-flex flex-column justify-content-between my-3 bg-blackish rounded-3">
+                    <div>
+                        <h4><%= rev.User.username %></h4>
+                        <div>
+                            <%for (int i = 0; i < 5; i++) { %>
+                            <% if (i < rev.rating) {%>
+                            <i class="bi bi-star-fill"></i>
+                            <%} %>
+                            <% else { %>
+                            <i class="bi bi-star"></i>
+                            <%} %>
+                            <%} %>
+                        </div>
+                    </div>
+                    <p style="margin-bottom: 0;" class="fs-5 mt-4"><%= rev.comment %></p>
+                </div>
+            </div>
+            <%} %>
+            <div class="mt-4">
                 <%-- game reviews --%>
                 <h3>User Reviews</h3>
                 <% foreach (var r in reviews) {%>
@@ -124,14 +155,14 @@
                             <%} %>
                         </div>
                     </div>
-                    <p style="margin: 0;"><%= r.comment %></p>
+                    <p style="margin-bottom: 0;" class="fs-5 mt-4"><%= r.comment %></p>
                 </div>
                 <%} %>
             </div>
         </div>
     </div>
     <script>
-    var txtComments = document.getElementById('<%= txtComments.ClientID %>');
+    var txtComments = document.getElementById('<%= txtComment.ClientID %>');
     txtComments.addEventListener('input', function () {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';

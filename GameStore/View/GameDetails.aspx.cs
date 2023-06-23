@@ -15,12 +15,17 @@ namespace GameStore.View
         public Game g = new Game();
         public List<Review> reviews = new List<Review>();
         public User u;
+        public Review rev = new Review();
+        public double rating;
         protected void Page_Load(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(Request.QueryString["id"]);
             g = GameRepo.FindById(id);
             reviews = ReviewRepo.GetGameReviews(id);
             u = Session["user"] as User;
+            if (u != null) rev = ReviewRepo.GetReviewByUserAndGame(u.Id, id);
+            else rev = null;
+            rating = ReviewRepo.GetGameRating(id);
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -62,12 +67,42 @@ namespace GameStore.View
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-
+            int game_id = Convert.ToInt32(Request.QueryString["id"]);
+            Response.Redirect("ModifyGame.aspx?id=" + game_id);
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            int game_id = Convert.ToInt32(Request.QueryString["id"]);
+            GameHandler.deleteGame(game_id);
+        }
 
+        protected void btnComment_Click(object sender, EventArgs e)
+        {
+            if(Session["user"] != null)
+            {
+                if (!string.IsNullOrEmpty(txtComment.Text))
+                {
+                    int game_id = Convert.ToInt32(Request.QueryString["id"]);
+                    int rating = Convert.ToInt32(hiddenStarIndex.Value);
+                    User u = Session["user"] as User;
+                    ReviewHandler.createReview(u.Id, game_id, rating, txtComment.Text);
+                    Response.Redirect("GameDetails.aspx?id=" + game_id);
+                }
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            int game_id = Convert.ToInt32(Request.QueryString["id"]);
+            User u = Session["user"] as User;
+            Review r = ReviewRepo.GetReviewByUserAndGame(u.Id, game_id);
+            if (r != null) ReviewRepo.removeReview(r);
+            Response.Redirect("GameDetails.aspx?id=" + game_id);
         }
     }
 }

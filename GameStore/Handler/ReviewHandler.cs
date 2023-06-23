@@ -18,7 +18,7 @@ namespace GameStore.Handler
             }
             else
             {
-                ReviewRepo.EditComment(user_id, game_id, comment, rating);
+                ReviewRepo.updateReview(user_id, game_id, comment, rating);
             }
         }
     }

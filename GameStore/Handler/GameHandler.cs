@@ -18,6 +18,7 @@ namespace GameStore.Handler
             }
             List<Cart> deleteList = CartRepo.GetItemsByGame(id);
             List<TransactionDetail> deleteList2 = DetailRepo.GetDetailsByGame(id);
+            List<Review> deleteList3 = ReviewRepo.GetGameReviews(id);
 
             foreach (Cart deleted in deleteList)
             {
@@ -26,6 +27,10 @@ namespace GameStore.Handler
             foreach (var deleted in deleteList2)
             {
                 DetailRepo.removeDetail(deleted);
+            }
+            foreach(var deleted in deleteList3)
+            {
+                ReviewRepo.removeReview(deleted);
             }
             GameRepo.removeGame(delete);
         }

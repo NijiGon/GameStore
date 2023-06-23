@@ -26,7 +26,7 @@ namespace GameStore.Repository
             db.Reviews.Remove(r);
             db.SaveChanges();
         }
-        public static void EditComment(int user_id, int device_id, string comment, int rating)
+        public static void updateReview(int user_id, int device_id, string comment, int rating)
         {
             Review r = GetReviewByUserAndGame(user_id, device_id);
             if (r != null)
