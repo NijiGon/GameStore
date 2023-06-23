@@ -13,9 +13,9 @@ namespace GameStore.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //HttpCookie cookie = Request.Cookies["user_cookie"];
-            //string email = cookie == null ? null : cookie.Value;
-            //if (email != null) tbEmail.Text = email;
+            HttpCookie cookie = Request.Cookies["user"];
+            string email = cookie == null ? null : cookie.Value;
+            if (email != null) tbEmail.Text = email;
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -24,10 +24,13 @@ namespace GameStore.View
             if(u != null)
             {
                 Session["user"] = u;
-                HttpCookie cookie = new HttpCookie("user_cookie");
-                cookie.Value = u.username;
-                cookie.Expires = DateTime.Now.AddHours(12);
-                Response.Cookies.Add(cookie);
+                if (cbAgree.Checked)
+                {
+                    HttpCookie cookie = new HttpCookie("user");
+                    cookie.Value = u.email;
+                    cookie.Expires = DateTime.Now.AddMinutes(30);
+                    Response.Cookies.Add(cookie);
+                }
                 Response.Redirect("Home.aspx");
             }
             else

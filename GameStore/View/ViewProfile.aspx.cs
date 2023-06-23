@@ -65,7 +65,7 @@ namespace GameStore.View
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Remove("user");
-            Response.Cookies.Remove("user_cookie");
+            Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
             Response.Redirect("Login.aspx");
         }
     }

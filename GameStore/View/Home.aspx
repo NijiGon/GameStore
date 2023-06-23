@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container d-flex flex-column px-2 py-1 mb-5" style="margin-top:10vh;">
         <div class="">
-            <h1>Trending Games</h1>
+            <h1>Top Rated Games</h1>
             <div class="row border-top border-white border-2 pt-3">
                 <% int i = 0; %>
                 <% foreach(var g in games){ %>

@@ -57,7 +57,7 @@
                 </div>
                 <div>
                     <%-- game developer --%>
-                    <h2><%= g.Developer1.name %></h2>
+                    <h2><a href="DevDetails.aspx?id=<%= g.dev_id %>"><%= g.Developer1.name %></a></h2>
                 </div>
                 <div>
                     <%-- game description --%>

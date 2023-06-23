@@ -10,7 +10,7 @@
                 <%-- image --%>
                 <img src="../Asset/developers/<%= d.image %>" class="w-100 rounded-3" alt="Alternate Text" />
             </div>
-            <div class="d-flex justify-content-center flex-column align-items-center">
+            <div class="d-flex justify-content-center flex-column align-items-center mt-3">
                 <% if (u != null)
                     { %>
                 <% if (u.role == "admin")
