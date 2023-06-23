@@ -33,11 +33,11 @@
                 <% if (items != null) { %>
                 <div class="d-flex flex-column mt-3 me-3 fs-5">
                     <asp:Label ID="lbPlatform" runat="server" Text="Choose a platform"></asp:Label>
-                    <asp:DropDownList ID="ddlPlatform" CssClass="rounded-2 bg-dark text-white" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlPlatform" CssClass="rounded-2 bg-dark text-white" runat="server" OnSelectedIndexChanged="ddlPlatform_SelectedIndexChanged"></asp:DropDownList>
                 </div>
                 <div class="d-flex flex-column mt-3 me-3 fs-5">
                     <asp:Label ID="lbMethod" runat="server" Text="Choose a payment method"></asp:Label>
-                    <asp:DropDownList ID="ddlMethod" CssClass="rounded-2 bg-dark text-white" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlMethod" CssClass="rounded-2 bg-dark text-white" runat="server" OnSelectedIndexChanged="ddlMethod_SelectedIndexChanged"></asp:DropDownList>
                 </div>
                 <div class="d-flex justify-content-end mt-4 fs-5">
                     <div class="ms-auto d-flex flex-column">
