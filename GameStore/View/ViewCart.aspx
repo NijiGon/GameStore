@@ -8,7 +8,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container w-50 mt-5 fs-4">
+    <div class="container w-50 fs-4" style="margin-top: 15vh; min-height:60vh">
         <table class="table">
             <thead>
                 <tr>
@@ -19,12 +19,13 @@
                 </tr>
             </thead>
             <tbody>
-                <% foreach(var c in items){ %>
                 <% int i = 1; %>
+                <% foreach(var c in items){ %>
+                
                 <tr>
                     <th scope="row"><%= i %></th>
                     <td><%= c.Game.name %></td>
-                    <td><%= c.Game.Developer.name %></td>
+                    <td><%= c.Game.Developer1.name %></td>
                     <td><%= c.quantity %></td>
                 </tr>
                 <% i++; %>
