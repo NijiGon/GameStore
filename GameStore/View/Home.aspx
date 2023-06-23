@@ -9,7 +9,7 @@
                 <% int i = 0; %>
                 <% foreach(var g in games){ %>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card my-3 text-white shadow" style="width: 18rem; background-color: #2e2e2e">
+                    <div class="card my-3 text-white shadow hover-effect" style="width: 18rem; background-color: #2e2e2e">
                         <img src="../Asset/games/<%= g.image %>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
@@ -35,7 +35,7 @@
                 <% int j = 0; %>
                 <% foreach(var d in developers){ %>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card my-3 text-white shadow" style="width: 18rem; background-color: #2e2e2e">
+                    <div class="card my-3 text-white shadow hover-effect" style="width: 18rem; background-color: #2e2e2e">
                         <img src="../Asset/developers/<%= d.image %>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><%= d.name %></h5>

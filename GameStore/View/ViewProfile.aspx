@@ -48,9 +48,9 @@
                     </div>
                 </div>
                 <div style="">
-                    <asp:Button ID="btnEdit" class="rounded btn btn-secondary" runat="server" Text="Ubah" OnClick="btnEdit_Click" />
-                    <asp:Button ID="btnSave" class="rounded btn btn-secondary" runat="server" Text="Simpan" OnClick="btnSave_Click" />
-                    <asp:Button ID="btnLogout" class="rounded btn btn-danger" runat="server" Text="Keluar" OnClick="btnLogout_Click" />
+                    <asp:Button ID="btnEdit" class="rounded btn btn-secondary" runat="server" Text="Edit" OnClick="btnEdit_Click" />
+                    <asp:Button ID="btnSave" class="rounded btn btn-secondary" runat="server" Text="Save" OnClick="btnSave_Click" />
+                    <asp:Button ID="btnLogout" class="rounded btn btn-danger" runat="server" Text="Logout" OnClick="btnLogout_Click" />
                 </div>
             </div>
         </div>

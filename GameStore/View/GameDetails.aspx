@@ -17,9 +17,17 @@
                 <%-- price --%>
                 <h3>Rp.<%= g.price.ToString("#,##0") %></h3>
             </div>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center flex-column align-items-center">
                 <%-- add to cart --%>
-                <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CssClass="hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-body-tertiary w-100" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-body-tertiary w-100" OnClick="btnAdd_Click" />
+                <% if (u != null)
+                    { %>
+                <% if (u.role == "admin")
+                    { %>
+                <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-warning w-100" OnClick="btnEdit_Click" />
+                <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-danger w-100" OnClick="btnDelete_Click" />
+                <%} %>
+                <%} %>
             </div>
         </div>
         <div class="d-flex flex-column justify-content-between">
@@ -42,7 +50,7 @@
                 <%-- game reviews --%>
                 <h3>User Reviews</h3>
                 <% foreach (var r in reviews) {%>
-                <div class="px-3 py-3 d-flex flex-column justify-content-between my-3 bg-blackish hover-effect rounded-3">
+                <div class="px-3 py-3 d-flex flex-column justify-content-between my-3 bg-blackish rounded-3">
                     <div>
                         <h4><%= r.User.username %></h4>
                         <div>
