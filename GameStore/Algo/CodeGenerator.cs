@@ -8,12 +8,13 @@ namespace GameStore.Algo
 {
     public class CodeGenerator
     {
+        private static Random random = new Random();
         public static string GenerateRandomString()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             StringBuilder sb = new StringBuilder();
 
-            Random random = new Random();
+            
             for (int i = 0; i < 12; i++)
             {
                 if (i > 0 && i % 4 == 0)
