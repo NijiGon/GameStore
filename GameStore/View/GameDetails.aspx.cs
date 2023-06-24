@@ -58,13 +58,21 @@ namespace GameStore.View
 
                 var emptyStar = (Image)starButton.FindControl("emptyStar" + i);
                 emptyStar.Visible = false;
+            }
 
-                //filledStar.CssClass = "star-img bi bi-star-fill";
-                //emptyStar.CssClass = "star-img bi bi-star";
+            // Loop through the remaining star controls and update their visibility
+            for (int i = starIndex + 1; i <= 5; i++)
+            {
+                var filledStar = (Image)starButton.FindControl("filledStar" + i);
+                filledStar.Visible = false;
+
+                var emptyStar = (Image)starButton.FindControl("emptyStar" + i);
+                emptyStar.Visible = true;
             }
 
             // Perform any other necessary operations, such as submitting the rating
         }
+
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
