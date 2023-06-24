@@ -34,7 +34,7 @@ namespace GameStore.View
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            if (items != null && !string.IsNullOrEmpty(ddlMethod.SelectedValue) && !string.IsNullOrEmpty(ddlPlatform.SelectedValue))
+            if (items != null)
             {
                 User u = Session["user"] != null ? Session["user"] as User : null;
                 int user_id = u.Id;
