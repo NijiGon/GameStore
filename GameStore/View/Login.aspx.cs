@@ -13,9 +13,12 @@ namespace GameStore.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie cookie = Request.Cookies["user"];
-            string email = cookie == null ? null : cookie.Value;
-            if (email != null) tbEmail.Text = email;
+            if (!IsPostBack)
+            {
+                HttpCookie cookie = Request.Cookies["user"];
+                string email = cookie == null ? null : cookie.Value;
+                if (email != null) tbEmail.Text = email;
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

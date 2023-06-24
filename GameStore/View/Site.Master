@@ -126,9 +126,18 @@
                         <li class="nav-item">
                             <a class="nav-link styled mx-3" href="ViewHistory.aspx"><i class="bi bi-clock-history"></i></a>
                         </li>
+                        <% if (items.Count > 0)
+                            { %>
                         <li class="nav-item">
                             <a class="nav-link styled mx-3" href="ViewCart.aspx"><i class="bi bi-cart"></i></a>
                         </li>
+                        <%} %>
+                        <% else if (items.Count <= 0)
+                            { %>
+                        <li class="nav-item">
+                            <a class="nav-link disabled styled mx-3" href="ViewCart.aspx"><i class="bi bi-cart"></i></a>
+                        </li>
+                        <%} %>
                         <%} %>
                         <%} %>
                         <li class="nav-item">

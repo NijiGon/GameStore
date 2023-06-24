@@ -36,6 +36,7 @@ namespace GameStore.View
                 int user_id = u.Id;
                 int game_id = Convert.ToInt32(Request.QueryString["id"]);
                 CartHandler.verifyItem(user_id, game_id, 1);
+                Response.Redirect("GameDetails.aspx?id=" + game_id);
             }
             else
             {

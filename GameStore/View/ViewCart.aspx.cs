@@ -34,14 +34,14 @@ namespace GameStore.View
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            if (items != null)
+            User u = Session["user"] != null ? Session["user"] as User : null;
+            int user_id = u.Id;
+            string date = DateTime.Now.ToString();
+            items = CartRepo.GetCarts(user_id);
+            int method_id = Session["selectedMethodId"] as int? ?? 1;
+            int platform_id = Session["selectedPlatformId"] as int? ?? 1;
+            if(items.Count > 0)
             {
-                User u = Session["user"] != null ? Session["user"] as User : null;
-                int user_id = u.Id;
-                string date = DateTime.Now.ToString();
-                items = CartRepo.GetCarts(u.Id);
-                int method_id = Session["selectedMethodId"] as int? ?? 1;
-                int platform_id = Session["selectedPlatformId"] as int? ?? 1;
                 int transaction_id = TransactionHandler.createTransaction(date, user_id, platform_id, method_id);
                 foreach (var c in items)
                 {
@@ -50,6 +50,7 @@ namespace GameStore.View
                 }
                 Response.Redirect("ViewCodes.aspx?id=" + transaction_id);
             }
+            Response.Redirect("Home.aspx");
         }
 
         protected void ddlMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,6 +62,20 @@ namespace GameStore.View
         protected void ddlPlatform_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["selectedPlatformId"] = Convert.ToInt32(ddlPlatform.SelectedValue);
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            User u = Session["user"] == null ? null : Session["user"] as User;
+            items = CartRepo.GetCarts(u.Id);
+            if(items.Count > 0)
+            {
+                foreach(var c in items)
+                {
+                    CartRepo.removeItem(c);
+                }
+            }
+            Response.Redirect(Request.RawUrl);
         }
     }
 }
