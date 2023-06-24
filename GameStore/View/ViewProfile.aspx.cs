@@ -26,7 +26,7 @@ namespace GameStore.View
                 tbUname.Attributes["placeholder"] = u.username;
                 tbEmail.Attributes["placeholder"] = u.email;
                 tbPass.Attributes["placeholder"] = new string('*', u.password.Length);
-                tbDOB.Attributes["placeholder"] = u.dob?.ToShortDateString();
+                tbDOB.Attributes["placeholder"] = u.dob?.ToString("yyyy/MM/dd");
             }
         }
 
@@ -39,6 +39,7 @@ namespace GameStore.View
                 tbEmail.ReadOnly = false;
                 tbUname.ReadOnly = false;
                 tbPass.ReadOnly = false;
+                tbDOB.ReadOnly = false; 
             }
             else
             {
@@ -47,6 +48,7 @@ namespace GameStore.View
                 tbEmail.ReadOnly = true;
                 tbUname.ReadOnly = true;
                 tbPass.ReadOnly = true;
+                tbDOB.ReadOnly = true;
             }
         }
 
