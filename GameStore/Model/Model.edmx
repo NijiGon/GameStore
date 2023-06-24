@@ -51,7 +51,7 @@
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="game_id" Type="int" Nullable="false" />
           <Property Name="rating" Type="int" Nullable="false" />
-          <Property Name="comment" Type="varchar" MaxLength="255" />
+          <Property Name="comment" Type="varchar(max)" />
           <Property Name="like" Type="int" />
           <Property Name="dislike" Type="int" />
         </EntityType>
@@ -299,7 +299,7 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="game_id" Type="Int32" Nullable="false" />
           <Property Name="rating" Type="Int32" Nullable="false" />
-          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="like" Type="Int32" />
           <Property Name="dislike" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK_Review_ToUser" FromRole="Review" ToRole="User" />

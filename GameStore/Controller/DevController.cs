@@ -25,7 +25,7 @@ namespace GameStore.Controller
                 }
                 return "File extension must be .png, .jpg, .jpeg, or .jfif";   
             }
-            return "Artist name must be unique";
+            return "Developer name must be unique";
         }
         public static Boolean checkExtension(string image)
         {
