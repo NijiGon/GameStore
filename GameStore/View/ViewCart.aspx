@@ -32,7 +32,7 @@
             <% if (items.Count > 0)
                 { %>
             <div class="d-flex flex-column align-items-end">
-                <asp:Button runat="server" ID="btnRemove" CssClass="rounded-3 border-0 fs-5 ms-auto py-1 bg-danger" Text="Remove" OnClick="btnRemove_Click"/>
+                <asp:Button runat="server" ID="btnRemove" CssClass="rounded-3 border-0 fs-5 ms-auto py-1 bg-danger" Text="Empty" OnClick="btnRemove_Click"/>
             </div>
             <%} %>
             <div class="d-flex justify-content-between">
