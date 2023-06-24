@@ -52,7 +52,7 @@ namespace GameStore.View
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string errorCode = UserController.EditValidator(tbFName.Text, tbLName.Text, tbPass.Text, tbEmail.Text, tbUname.Text, tbDOB.Text);
+            string errorCode = UserController.EditValidator(tbFName.Text, tbLName.Text, tbEmail.Text, tbPass.Text, tbUname.Text, tbDOB.Text);
             User u = Session["user"] as User;
             if (string.IsNullOrEmpty(errorCode) && u != null)
             {

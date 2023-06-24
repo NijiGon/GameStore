@@ -19,7 +19,7 @@
                     <tr>
                         <th scope="row"><%= i %></th>
                         <td><a href="GameDetails.aspx?id=<%= td.game_id %>"><%= td.Game.name %></a></td>
-                        <td><a href="DevDetails.aspx?id=<%= td.Game.dev_id %>"><%= td.Game.Developer1.name %></a></td>
+                        <td><a href="DevDetails.aspx?id=<%= td.Game.dev_id %>"><%= td.Game.Developer.name %></a></td>
                         <td><%= td.quantity %></td>
                     </tr>
                     <% i++; %>

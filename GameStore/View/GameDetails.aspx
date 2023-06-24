@@ -18,7 +18,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container bg-darker d-flex py-5 px-5" style="margin-top:8vh; min-height:100vh;">
         <%-- container --%>
-        <div class="w-75 me-5">
+        <div class="me-5" style="width:25%">
             <%-- price n img container --%>
             <div class="">
                 <%-- image --%>
@@ -33,9 +33,12 @@
             </div>
             <div class="d-flex justify-content-center flex-column align-items-center">
                 <%-- add to cart --%>
-                <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-body-tertiary w-100" OnClick="btnAdd_Click" />
                 <% if (u != null)
                     { %>
+                <%if (u.role == "customer")
+                    { %>
+                <asp:Button ID="btnAdd" runat="server" Text="Add to Cart" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-body-tertiary w-100" OnClick="btnAdd_Click" />
+                <%} %>
                 <% if (rev != null)
                     { %>
                 <asp:Button ID="btnRemove" runat="server" Text="Remove Review" CssClass="mb-3 fs-4 hover-effect rounded-3 border-0 w-25 m-auto py-2 bg-danger w-100" OnClick="btnRemove_Click" />
@@ -48,7 +51,7 @@
                 <%} %>
             </div>
         </div>
-        <div class="d-flex flex-column justify-content-between">
+        <div class="d-flex flex-column justify-content-between" style="width:75%">
             <%-- info container --%>
             <div>
                 <div>
@@ -57,13 +60,16 @@
                 </div>
                 <div>
                     <%-- game developer --%>
-                    <h2><a href="DevDetails.aspx?id=<%= g.dev_id %>"><%= g.Developer1.name %></a></h2>
+                    <h2><a href="DevDetails.aspx?id=<%= g.dev_id %>"><%= g.Developer.name %></a></h2>
                 </div>
                 <div>
                     <%-- game description --%>
                     <p><%= g.description %></p>
                 </div>
             </div>
+            <% if (u != null){ %>
+            <% if (u.role == "customer")
+                { %>
             <div class="mb-3">
                 <h3>Add a comment</h3>
                 <div class="d-flex w-100" style="margin-top: -10px;">
@@ -116,18 +122,22 @@
                     <asp:Button ID="btnComment" CssClass="rounded-end-3 border-0 bg-body-tertiary" runat="server" Text="Comment" OnClick="btnComment_Click" />
                 </div>
             </div>
-            <% if (rev != null){ %>
+            <% if (rev != null)
+                { %>
             <div class="mt-4">
                 <h3>Your Review</h3>
                 <div class="px-3 py-3 d-flex flex-column justify-content-between my-3 bg-blackish rounded-3">
                     <div>
                         <h4><%= rev.User.username %></h4>
                         <div>
-                            <%for (int i = 0; i < 5; i++) { %>
-                            <% if (i < rev.rating) {%>
+                            <%for (int i = 0; i < 5; i++)
+                                { %>
+                            <% if (i < rev.rating)
+                                {%>
                             <i class="bi bi-star-fill"></i>
                             <%} %>
-                            <% else { %>
+                            <% else
+                                { %>
                             <i class="bi bi-star"></i>
                             <%} %>
                             <%} %>
@@ -136,6 +146,8 @@
                     <p style="margin-bottom: 0;" class="fs-5 mt-4"><%= rev.comment %></p>
                 </div>
             </div>
+            <%} %>
+            <%} %>
             <%} %>
             <div class="mt-4">
                 <%-- game reviews --%>

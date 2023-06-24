@@ -18,7 +18,7 @@ namespace GameStore.Model
         public int game_id { get; set; }
         public int quantity { get; set; }
     
-        public virtual Game Game { get; set; }
         public virtual TransactionHeader TransactionHeader { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

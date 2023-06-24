@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container bg-darker d-flex py-5 px-5" style="margin-top:8vh; min-height:100vh;">
         <%-- container --%>
-        <div class="w-75 me-5">
+        <div class="me-5" style="max-width:25%">
             <%-- price n img container --%>
             <div class="">
                 <%-- image --%>

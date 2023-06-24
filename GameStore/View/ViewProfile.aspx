@@ -54,7 +54,7 @@
             <div class="px-3 shadow py-3 d-flex flex-column justify-content-between my-3 bg-darkish rounded-3">
                     <div>
                         <h4 class="mb-0"><%= r.User.username %></h4>
-                        <p class="mt-0 fs-6">Commenting at <a href="GameDetails.aspx?id=<%= r.game_id %>"><%= r.Game.name %></a></p>
+                        <p class="mt-0 fs-6">Commenting on <a href="GameDetails.aspx?id=<%= r.game_id %>"><%= r.Game.name %></a></p>
                         <div>
                             <%for (int i = 0; i < 5; i++) { %>
                             <% if (i < r.rating) {%>

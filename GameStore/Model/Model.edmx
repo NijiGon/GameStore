@@ -278,8 +278,8 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="game_id" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Game" Relationship="Self.FK_Cart_ToGame" FromRole="Cart" ToRole="Game" />
           <NavigationProperty Name="User" Relationship="Self.FK_Cart_ToUser" FromRole="Cart" ToRole="User" />
+          <NavigationProperty Name="Game" Relationship="DatabaseModel.FK_Cart_ToGame" FromRole="Cart" ToRole="Game" />
         </EntityType>
         <EntityType Name="Developer">
           <Key>
@@ -289,23 +289,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Games" Relationship="DatabaseModel.FK_Game_ToDeveloper1" FromRole="Developer" ToRole="Game" />
-        </EntityType>
-        <EntityType Name="Game">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dev_id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToGame" FromRole="Game" ToRole="Cart" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToGame" FromRole="Game" ToRole="Review" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="Game" ToRole="TransactionDetail" />
-          <NavigationProperty Name="Developer1" Relationship="DatabaseModel.FK_Game_ToDeveloper1" FromRole="Game" ToRole="Developer" />
-          <Property Name="genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Games" Relationship="DatabaseModel.FK_Game_ToDeveloper" FromRole="Developer" ToRole="Game" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -318,8 +302,8 @@
           <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="like" Type="Int32" />
           <Property Name="dislike" Type="Int32" />
-          <NavigationProperty Name="Game" Relationship="Self.FK_Review_ToGame" FromRole="Review" ToRole="Game" />
           <NavigationProperty Name="User" Relationship="Self.FK_Review_ToUser" FromRole="Review" ToRole="User" />
+          <NavigationProperty Name="Game" Relationship="DatabaseModel.FK_Review_ToGame" FromRole="Review" ToRole="Game" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -337,18 +321,6 @@
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
           </EntityType>
-        <Association Name="FK_Cart_ToGame">
-          <End Role="Game" Type="Self.Game" Multiplicity="1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Game">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="game_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Cart_ToUser">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
@@ -358,30 +330,6 @@
             </Principal>
             <Dependent Role="Cart">
               <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Game_ToDeveloper">
-          <End Role="Developer" Type="Self.Developer" Multiplicity="1" />
-          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Developer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Review_ToGame">
-          <End Role="Game" Type="Self.Game" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Game">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="game_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -400,40 +348,19 @@
         <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Developers" EntityType="Self.Developer" />
-          <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Cart_ToGame" Association="Self.FK_Cart_ToGame">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Cart_ToUser" Association="Self.FK_Cart_ToUser">
             <End Role="User" EntitySet="Users" />
             <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Game_ToDeveloper" Association="Self.FK_Game_ToDeveloper">
-            <End Role="Developer" EntitySet="Developers" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_ToGame" Association="Self.FK_Review_ToGame">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
           <AssociationSet Name="FK_Review_ToUser" Association="Self.FK_Review_ToUser">
             <End Role="User" EntitySet="Users" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
           <EntitySet Name="TransactionDetails" EntityType="DatabaseModel.TransactionDetail" />
-          <AssociationSet Name="FK_TransactionDetails_ToGame" Association="DatabaseModel.FK_TransactionDetails_ToGame">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
-          </AssociationSet>
           <EntitySet Name="Platforms" EntityType="DatabaseModel.Platform" />
           <EntitySet Name="TransactionMethods" EntityType="DatabaseModel.TransactionMethod" />
-          <AssociationSet Name="FK_Game_ToDeveloper1" Association="DatabaseModel.FK_Game_ToDeveloper1">
-            <End Role="Developer" EntitySet="Developers" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
           <EntitySet Name="TransactionHeaders" EntityType="DatabaseModel.TransactionHeader" />
           <AssociationSet Name="FK_TransactionHeader_ToPlatform" Association="DatabaseModel.FK_TransactionHeader_ToPlatform">
             <End Role="Platform" EntitySet="Platforms" />
@@ -451,6 +378,23 @@
             <End Role="User" EntitySet="Users" />
             <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
           </AssociationSet>
+          <EntitySet Name="Games" EntityType="DatabaseModel.Game" />
+          <AssociationSet Name="FK_Cart_ToGame" Association="DatabaseModel.FK_Cart_ToGame">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_ToDeveloper" Association="DatabaseModel.FK_Game_ToDeveloper">
+            <End Role="Developer" EntitySet="Developers" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_ToGame" Association="DatabaseModel.FK_Review_ToGame">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetails_ToGame" Association="DatabaseModel.FK_TransactionDetails_ToGame">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="TransactionDetail">
           <Key>
@@ -460,21 +404,9 @@
           <Property Name="transaction_id" Type="Int32" Nullable="false" />
           <Property Name="game_id" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Game" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="TransactionDetail" ToRole="Game" />
           <NavigationProperty Name="TransactionHeader" Relationship="DatabaseModel.FK_TransactionDetails_ToHeader" FromRole="TransactionDetail" ToRole="TransactionHeader" />
+          <NavigationProperty Name="Game" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="TransactionDetail" ToRole="Game" />
         </EntityType>
-        <Association Name="FK_TransactionDetails_ToGame">
-          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
-          <End Type="DatabaseModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Game">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TransactionDetail">
-              <PropertyRef Name="game_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Platform">
           <Key>
             <PropertyRef Name="Id" />
@@ -493,18 +425,6 @@
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_ToMethod" FromRole="TransactionMethod" ToRole="TransactionHeader" />
         </EntityType>
-        <Association Name="FK_Game_ToDeveloper1">
-          <End Type="DatabaseModel.Developer" Role="Developer" Multiplicity="1" />
-          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Developer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="dev_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="TransactionHeader">
           <Key>
             <PropertyRef Name="Id" />
@@ -567,6 +487,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dev_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Carts" Relationship="DatabaseModel.FK_Cart_ToGame" FromRole="Game" ToRole="Cart" />
+          <NavigationProperty Name="Developer" Relationship="DatabaseModel.FK_Game_ToDeveloper" FromRole="Game" ToRole="Developer" />
+          <NavigationProperty Name="Reviews" Relationship="DatabaseModel.FK_Review_ToGame" FromRole="Game" ToRole="Review" />
+          <NavigationProperty Name="TransactionDetails" Relationship="DatabaseModel.FK_TransactionDetails_ToGame" FromRole="Game" ToRole="TransactionDetail" />
+        </EntityType>
+        <Association Name="FK_Cart_ToGame">
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
+          <End Type="DatabaseModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_ToDeveloper">
+          <End Type="DatabaseModel.Developer" Role="Developer" Multiplicity="1" />
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="dev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_ToGame">
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
+          <End Type="DatabaseModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetails_ToGame">
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
+          <End Type="DatabaseModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -589,19 +573,6 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="description" ColumnName="description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Games">
-            <EntityTypeMapping TypeName="DatabaseModel.Game">
-              <MappingFragment StoreEntitySet="Game">
-                <ScalarProperty Name="genre" ColumnName="genre" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="dev_id" ColumnName="dev_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="price" ColumnName="price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -665,6 +636,19 @@
                 <ScalarProperty Name="platform_id" ColumnName="platform_id" />
                 <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="DatabaseModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dev_id" ColumnName="dev_id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

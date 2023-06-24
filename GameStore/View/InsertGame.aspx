@@ -6,6 +6,10 @@
         <div class="fs-4" style="width: 40%">
             <h1 class="text-center">Add Game</h1>
             <div class="d-flex flex-column py-1 my-3">
+                <asp:Label ID="lbMethod" runat="server" Text="Choose developer:"></asp:Label>
+                <asp:DropDownList ID="ddlDev" CssClass="rounded-3 bg-dark p-2 text-white" runat="server"></asp:DropDownList>
+            </div>
+            <div class="d-flex flex-column py-1 my-3">
                 <asp:Label ID="lbName" runat="server" Text="Game Name"></asp:Label>
                 <asp:TextBox ID="tbName" runat="server" placeholder="" CssClass="p-2 rounded-3 form-control bg-dark border-white text-white gray-placeholder"></asp:TextBox>
             </div>

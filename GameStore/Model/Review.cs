@@ -21,7 +21,7 @@ namespace GameStore.Model
         public Nullable<int> like { get; set; }
         public Nullable<int> dislike { get; set; }
     
-        public virtual Game Game { get; set; }
         public virtual User User { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

@@ -16,15 +16,11 @@ namespace GameStore.Controller
             {
                 if (description.Length < 255)
                 {
-                    if (price >= 100000 && price <= 1000000)
+                    if (DevController.checkExtension(image))
                     {
-                        if (DevController.checkExtension(image))
-                        {
-                            return null;
-                        }
-                        return "File extension must be .png, .jpg, .jpeg, or .jfif";
+                        return null;
                     }
-                    return "Price must be between 100000 and 1000000";
+                    return "File extension must be .png, .jpg, .jpeg, or .jfif";
                 }
                 return "Description must be smaller than 255 characters";
             }

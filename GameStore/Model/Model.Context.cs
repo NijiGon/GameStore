@@ -27,12 +27,12 @@ namespace GameStore.Model
     
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Developer> Developers { get; set; }
-        public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<TransactionDetail> TransactionDetails { get; set; }
         public virtual DbSet<Platform> Platforms { get; set; }
         public virtual DbSet<TransactionMethod> TransactionMethods { get; set; }
         public virtual DbSet<TransactionHeader> TransactionHeaders { get; set; }
+        public virtual DbSet<Game> Games { get; set; }
     }
 }

@@ -12,7 +12,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-grayish border-2" id="basic-addon1">Developer Description</span>
-                        <asp:TextBox type="password" class="form-control bg-grayeesh border-2 gray-placeholder text-primary text-white" placeholder="" ReadOnly="true" aria-label="Username" aria-describedby="basic-addon1" ID="tbDesc" runat="server"></asp:TextBox>
+                        <asp:TextBox type="text" class="form-control bg-grayeesh border-2 gray-placeholder text-primary text-white" placeholder="" ReadOnly="true" aria-label="Username" aria-describedby="basic-addon1" ID="tbDesc" runat="server"></asp:TextBox>
                     </div>
                     <div class="input-group mb-3 d-flex flex-column">
                         <asp:Label ID="lbImg" runat="server" Text="Upload game image file:"></asp:Label>

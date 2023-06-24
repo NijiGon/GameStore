@@ -75,6 +75,7 @@ namespace GameStore.View
         {
             int game_id = Convert.ToInt32(Request.QueryString["id"]);
             GameHandler.deleteGame(game_id);
+            Response.Redirect("Home.aspx");
         }
 
         protected void btnComment_Click(object sender, EventArgs e)

@@ -38,6 +38,7 @@ namespace GameStore.View
         {
             int dev_id = Convert.ToInt32(Request.QueryString["id"]);
             DevHandler.deleteDev(dev_id);
+            Response.Redirect("Home.aspx");
         }
     }
 }

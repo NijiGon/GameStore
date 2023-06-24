@@ -15,16 +15,19 @@ namespace GameStore.View
         Game g = new Game();
         protected void Page_Load(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(Request.QueryString["id"]);
-            g = GameRepo.FindById(id);
-            List<Developer> devs = DevRepo.GetDevelopers();
-            ddlDev.DataSource = devs;
-            ddlDev.DataTextField = "name";
-            ddlDev.DataValueField = "Id";
-            ddlDev.DataBind();
-            tbName.Attributes["placeholder"] = g.name;
-            tbDesc.Attributes["placeholder"] = g.description;
-            tbPrice.Attributes["placeholder"] = g.price.ToString();
+            if (!IsPostBack)
+            {
+                int id = Convert.ToInt32(Request.QueryString["id"]);
+                g = GameRepo.FindById(id);
+                List<Developer> devs = DevRepo.GetDevelopers();
+                ddlDev.DataSource = devs;
+                ddlDev.DataTextField = "name";
+                ddlDev.DataValueField = "Id";
+                ddlDev.DataBind();
+                tbName.Attributes["placeholder"] = g.name;
+                tbDesc.Attributes["placeholder"] = g.description;
+                tbPrice.Attributes["placeholder"] = g.price.ToString();
+            }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)

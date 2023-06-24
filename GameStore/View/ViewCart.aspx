@@ -22,7 +22,7 @@
                     <tr>
                         <th scope="row"><%= i %></th>
                         <td><%= c.Game.name %></td>
-                        <td><%= c.Game.Developer1.name %></td>
+                        <td><%= c.Game.Developer.name %></td>
                         <td><%= c.quantity %></td>
                     </tr>
                     <% i++; %>
