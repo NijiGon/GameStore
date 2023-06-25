@@ -95,7 +95,7 @@
     <form id="form1" runat="server">
         <div>
             <nav class="navbar navbar-expand-md navbar-dark bg-darker px-3 shadow fixed-top" style="height: 80px">
-                <a class="navbar-brand fw-bold fs-3 me-3" href="Home.aspx">GameZtore</a>
+                <a class="navbar-brand fw-bold fs-3 me-3" href="Home.aspx">GameHub</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -161,7 +161,7 @@
                     <a href="#"><i class="bi bi-instagram"></i></a>
                 </div>
                 <div class="container text-center">
-                    <p>&copy; 2023 GameZtore. All rights reserved.</p>
+                    <p>&copy; 2023 GameHub. All rights reserved.</p>
                 </div>
             </footer>
         </div>
